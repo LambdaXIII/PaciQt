@@ -1,0 +1,20 @@
+style=kr
+
+indent=spaces=2
+
+indent-switches
+
+indent-cases
+
+# --indent-continuation=3
+pad-oper
+pad-header
+
+#add-brackets
+
+indent-preproc-block
+
+indent-preproc-define
+
+attach-namespaces
+

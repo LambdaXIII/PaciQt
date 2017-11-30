@@ -1,0 +1,3 @@
+[submodule "PaciCore"]
+	path = PaciCore
+	url = git@github.com:LambdaXIII/PaciCore.git
