@@ -1,7 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    PaciCore
+    PaciCore \
+    CandyQt
 
 
 DISTFILES += \
