@@ -4,3 +4,6 @@
 [submodule "CandyQt"]
 	path = CandyQt
 	url = git@github.com:LambdaXIII/CandyQt.git
+[submodule "PaciFormat"]
+	path = PaciFormat
+	url = git@github.com:LambdaXIII/PaciFormat.git
