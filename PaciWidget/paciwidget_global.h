@@ -1,0 +1,12 @@
+#ifndef PACIWIDGET_GLOBAL_H
+#define PACIWIDGET_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(PACIWIDGET_LIBRARY)
+#  define PACIWIDGETSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define PACIWIDGETSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PACIWIDGET_GLOBAL_H

@@ -3,8 +3,10 @@ TEMPLATE = subdirs
 SUBDIRS += \
     PaciCore \
     CandyQt \
-    PaciFormat
+    PaciFormat \
+    PaciWidget
 
+SUBDIRS += PaciMainWindow
 
 DISTFILES += \
 m.astylerc \

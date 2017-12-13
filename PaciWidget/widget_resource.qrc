@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/tc_clock">
+        <file alias="0">digits/0.png</file>
+        <file alias="1">digits/1.png</file>
+        <file alias="2">digits/2.png</file>
+        <file alias="3">digits/3.png</file>
+        <file alias="4">digits/4.png</file>
+        <file alias="5">digits/5.png</file>
+        <file alias="6">digits/6.png</file>
+        <file alias="7">digits/7.png</file>
+        <file alias="8">digits/8.png</file>
+        <file alias="9">digits/9.png</file>
+        <file alias="df">digits/df.png</file>
+        <file alias="ndf">digits/ndf.png</file>
+    </qresource>
+</RCC>
