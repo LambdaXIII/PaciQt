@@ -4,12 +4,13 @@
 #include <QWidget>
 #include <QPaintEvent>
 #include <QMap>
+#include <QLCDNumber>
 #include "timebase.h"
 #include "candy_macros.h"
 #include "paciwidget_global.h"
 
 
-class PACIWIDGETSHARED_EXPORT TimecodeClock : public QWidget
+class PACIWIDGETSHARED_EXPORT TimecodeClock : public QLCDNumber
 {
   Q_OBJECT
   CANDY_PROPERTY_RO(Timebase*, timebase)
@@ -23,15 +24,8 @@ public:
   void setTimebase(Timebase *tb);
   void setFrames(int x);
 
-protected:
-  static const int DigitWidth = 15;
-  static const int DigitHeight = 20;
-  void paintEvent(QPaintEvent *event) override;
-  const QMap<QChar, QString> imageMap {
-    {';', ":/tc_clock/df"},
-    {':', ":/tc_clock/ndf"}
-  };
-
+protected slots:
+  void updateTC();
 
 signals:
   void timebaseChanged(Timebase* x);
