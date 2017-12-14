@@ -25,10 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        pacimainwindow.cpp
+        pacimainwindow.cpp \
+    widgets/tracksidebar.cpp \
+    widgets/trackbutton.cpp
 
 HEADERS += \
-        pacimainwindow.h
+        pacimainwindow.h \
+    widgets/tracksidebar.h \
+    widgets/trackbutton.h
 
 FORMS += \
         pacimainwindow.ui
