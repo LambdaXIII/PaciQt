@@ -21,13 +21,13 @@ void TrackSideBar::clearButtonGroup()
 
 void TrackSideBar::setSequence(Sequence *seq)
 {
-  layout()->children().clear();
+
   clearButtonGroup();
 
   sequence = seq;
   TrackBox *tracks = sequence->trackBox();
   for (int i = 0; i < tracks->size(); i++) {
-    TrackButton *button = new TrackButton(i, sequence->trackBox()[i]);
+    TrackButton *button = new TrackButton(i, sequence->trackBox()->at(i));
     buttonGroup->addButton(button);
     layout()->addWidget(button);
   }

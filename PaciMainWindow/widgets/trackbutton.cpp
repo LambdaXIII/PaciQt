@@ -16,5 +16,4 @@ void TrackButton::paintEvent(QPaintEvent *event)
   QPainter p(this);
   p.setFont(QFont("HeitiSC", 13));
   p.drawText(0, height() / 2, QString::number(trackIndex));
-
 }
