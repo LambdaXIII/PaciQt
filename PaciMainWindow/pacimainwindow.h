@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 namespace Ui {
-  class PaciMainWindow;
+class PaciMainWindow;
 }
 
 class PaciMainWindow : public QMainWindow
@@ -17,6 +17,9 @@ public:
 
 private:
   Ui::PaciMainWindow *ui;
+
+protected slots:
+  void run_test();
 };
 
 #endif // PACIMAINWINDOW_H

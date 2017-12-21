@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         pacimainwindow.cpp \
     widgets/tracksidebar.cpp \
-    widgets/trackbutton.cpp
+    widgets/trackbutton.cpp \
+    format_handler/formatprofile.cpp
 
 HEADERS += \
         pacimainwindow.h \
     widgets/tracksidebar.h \
-    widgets/trackbutton.h
+    widgets/trackbutton.h \
+    format_handler/formatprofile.h
 
 FORMS += \
         pacimainwindow.ui
@@ -57,3 +59,10 @@ else:unix: LIBS += -L$$OUT_PWD/../CandyQt/ -lCandyQt
 
 INCLUDEPATH += $$PWD/../CandyQt
 DEPENDPATH += $$PWD/../CandyQt
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciFormat/release/ -lPaciFormat
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciFormat/debug/ -lPaciFormat
+else:unix: LIBS += -L$$OUT_PWD/../PaciFormat/ -lPaciFormat
+
+INCLUDEPATH += $$PWD/../PaciFormat
+DEPENDPATH += $$PWD/../PaciFormat
