@@ -5,19 +5,30 @@
 #include "formatprofile.h"
 #include "candy_macros.h"
 #include "sequence.h"
+#include "textloader.h"
 
-namespace Multiloader {
+
 using namespace FormatProfile;
 
+template<class T> BaseLoader* createInstance(QString _path)
+{
+  return new T(_path);
+}
 
+class Multiloader
+  : public QObject
+{
+  Q_OBJECT
+  CANDY_PROPERTY_RO(QString, filename)
 
+public:
+  Multiloader(QString _path, QString _selectedFilter, QObject *parent = nullptr);
 
-Sequence* loadPlainText(QString path);
+  const static QMap<Format, std::function<BaseLoader*(QString)>> functionMap;
 
-const QMap<Format, std::function<Sequence*(QString)>> functionMap{
-  {PlainText, &loadPlainText},
-};
+protected:
+  BaseLoader *loader;
 
-} //namespace Multiloader
+}; //namespace Multiloader
 
 #endif // MULTILOADER_H

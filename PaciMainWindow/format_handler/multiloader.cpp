@@ -1,10 +1,17 @@
 #include "multiloader.h"
 
-namespace Multiloader {
+using namespace FormatProfile;
 
-Sequence* loadPlainText(QString path)
+
+
+
+Multiloader::Multiloader(QString _path, QString _selectedFilter, QObject *parent)
+  : QObject(parent)
 {
-  return 0;
+
 }
 
-} //namespace Multiloader
+const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap =  {
+  {PlainText, &createInstance<TextLoader>},
+};
+
