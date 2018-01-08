@@ -1,24 +1,19 @@
 #include "formatprofile.h"
+#include <QCoreApplication>
 
-FormatProfile::FormatProfile()
-  : QObject()
+namespace FormatProfile {
+
+//QString tr(char *a)
+//{
+//  return QCoreApplication::translate(a, "Formats");
+//}
+
+QString getFilter(Format f)
 {
-  formatNames = QMap<Format, QString>({
-    {PlainText, tr("文本文件")},
-  });
-
-  formatSuffixes = QMap<Format, QString>({
-    {PlainText, "*.txt"},
-  });
+  return formatNames[f] + "(" + formatSuffixes[f] + ")";
 }
 
-
-QString FormatProfile::getFilter(Format f)
-{
-  return formatNames[f] + "(" + formatSuffixes + ")";
-}
-
-QString FormatProfile::getAllFilters()
+QString getAllFilters()
 {
   QStringList filters;
   for (Format a : formatNames.keys()) {
@@ -28,7 +23,7 @@ QString FormatProfile::getAllFilters()
 }
 
 
-FormatProfile::Format FormatProfile::searchFormat(QString selectedFilter)
+Format searchFormat(QString selectedFilter)
 {
   for (Format a : formatNames.keys()) {
     if (selectedFilter.contains(formatNames[a]))
@@ -36,3 +31,5 @@ FormatProfile::Format FormatProfile::searchFormat(QString selectedFilter)
   }
   return Unknown;
 }
+
+} //namespace FormatProfile

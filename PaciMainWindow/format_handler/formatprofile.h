@@ -4,25 +4,27 @@
 #include <QObject>
 #include <QMap>
 
+namespace FormatProfile {
 
-class FormatProfile : public QObject
-{
-  Q_OBJECT
-public:
-  FormatProfile();
+//QString tr(char* a);
 
-  enum Format {
-    Unknown,
-    PlainText,
-  };
-
-  QMap<Format, QString> formatNames;
-  QMap<Format, QString> formatSuffixes;
-
-  QString getFilter(Format f);
-  QString getAllFilters();
-  Format searchFormat(QString selectedFilter);
-
+enum Format {
+  Unknown,
+  PlainText
 };
+
+const QMap<Format, QString> formatNames{
+  {PlainText, "文本文件"},
+};
+
+const QMap<Format, QString> formatSuffixes{
+  {PlainText, "*.txt"},
+};
+
+QString getFilter(Format f);
+QString getAllFilters();
+Format searchFormat(QString selectedFilter);
+
+} //namespace FormatProfile
 
 #endif // FORMATPROFILE_H
