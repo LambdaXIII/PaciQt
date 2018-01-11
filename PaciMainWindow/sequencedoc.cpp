@@ -2,6 +2,7 @@
 
 SequenceDoc::SequenceDoc(QObject *parent) : QObject(parent)
 {
+  init();
 
 }
 
