@@ -1,5 +1,5 @@
 #include "pacimainwindow.h"
-//#include "sequencedoc.h"
+#include "sequencedoc.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
   QApplication::setApplicationVersion("0.1a");
   QApplication a(argc, argv);
 
-//  SequenceDoc(qApp);
+  SequenceDoc(qApp);
 
   PaciMainWindow w;
   w.show();
