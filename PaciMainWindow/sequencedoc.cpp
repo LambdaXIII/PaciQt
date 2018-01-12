@@ -3,7 +3,6 @@
 SequenceDoc::SequenceDoc(QObject *parent) : QObject(parent)
 {
   init();
-
 }
 
 void SequenceDoc::init()
@@ -21,3 +20,8 @@ SequenceDoc* SequenceDoc::instance()
 }
 
 SequenceDoc* SequenceDoc::self = 0;
+
+void SequenceDoc::open()
+{
+
+}

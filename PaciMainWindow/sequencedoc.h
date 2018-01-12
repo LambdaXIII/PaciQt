@@ -46,11 +46,11 @@ signals:
   void sequenceCreated();
   void editedChanged(bool e);
   void currentFilenameChanged(QString f);
-  void sequenceChanged();
+  void sequenceChanged(QSharedPointer<Sequence> s);
 
 
 public slots:
-  void open(QString filenaame);
+  void open();
   void save();
   void saveAs(QString filename);
   void create();
