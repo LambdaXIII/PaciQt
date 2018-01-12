@@ -31,7 +31,6 @@ const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap
 };
 
 const QMap<Format, std::function<void(BaseLoader*)>> Multiloader::setupMap = {
-  {PlainText, &Multiloader::setupPlainText},
 };
 
 /*
@@ -60,9 +59,4 @@ QSharedPointer<Sequence> Multiloader::getSequence()
   workThread.start();
   workThread.wait();
   return QSharedPointer<Sequence>(result_sequence);
-}
-
-void Multiloader::setupPlainText(BaseLoader *loader)
-{
-  qDebug() << "普通文本导入器额外操作测试函数启动。";
 }

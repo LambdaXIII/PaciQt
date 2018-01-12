@@ -22,7 +22,6 @@ class Multiloader
 {
   Q_OBJECT
   CANDY_PROPERTY_RO(QString, filename)
-  CANDY_PROPERTY_RO(Sequence*, result)
   CANDY_PROPERTY_RO(Format, format)
 
 public:
@@ -32,8 +31,6 @@ public:
   const static QMap<Format, std::function<BaseLoader*(QString)>> functionMap;
 
   const static QMap<Format, std::function<void(BaseLoader*)>> setupMap;
-
-  static void setupPlainText(BaseLoader *loader);
 
   QSharedPointer<Sequence> getSequence();
 

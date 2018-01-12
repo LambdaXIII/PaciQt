@@ -31,6 +31,7 @@ SOURCES += \
     format_handler/formatprofile.cpp \
     format_handler/multiloader.cpp \
 #    sequencedoc.cpp
+    format_handler/multisaver.cpp
 
 HEADERS += \
         pacimainwindow.h \
@@ -39,6 +40,7 @@ HEADERS += \
     format_handler/formatprofile.h \
     format_handler/multiloader.h \
 #    sequencedoc.h
+    format_handler/multisaver.h
 
 FORMS += \
         pacimainwindow.ui
