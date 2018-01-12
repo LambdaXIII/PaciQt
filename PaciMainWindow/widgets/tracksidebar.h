@@ -5,6 +5,7 @@
 #include <QScrollArea>
 #include <QButtonGroup>
 #include "sequence.h"
+#include "../sequencedoc.h"
 
 
 class TrackSideBar : public QScrollArea
@@ -15,15 +16,16 @@ public:
 
 protected:
   QButtonGroup *buttonGroup;
-  Sequence *sequence;
 
 signals:
+  void trackSelected(int index);
 
 public slots:
-  void setSequence(Sequence *seq);
+  void refresh();
 
 protected slots:
   void clearButtonGroup();
+  void handleSelection();
 };
 
 #endif // TRACKSIDEBAR_H

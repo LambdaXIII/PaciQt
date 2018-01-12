@@ -47,5 +47,6 @@ public slots:
 };
 
 #define GlobalDocument SequenceDoc::instance()
+#define GlobalSequence GlobalDocument->sequence()
 
 #endif // SEQUENCEDOC_H
