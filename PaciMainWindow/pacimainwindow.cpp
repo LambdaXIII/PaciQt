@@ -8,7 +8,12 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   ui(new Ui::PaciMainWindow)
 {
   ui->setupUi(this);
+
+  connect(GlobalDocument, &SequenceDoc::editedChanged, ui->trackSideBar, &TrackSideBar::refresh);
+
   connect(ui->actionTest, &QAction::triggered, this, &PaciMainWindow::run_test);
+
+  connect(ui->actionOpen, &QAction::triggered, GlobalDocument, &SequenceDoc::open);
 }
 
 PaciMainWindow::~PaciMainWindow()
