@@ -10,6 +10,7 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   ui->setupUi(this);
 
   connect(GlobalDocument, &SequenceDoc::editedChanged, ui->trackSideBar, &TrackSideBar::refresh);
+  connect(GlobalDocument, &SequenceDoc::sequenceChanged, ui->trackSideBar, &TrackSideBar::refresh);
 
   connect(ui->actionTest, &QAction::triggered, this, &PaciMainWindow::run_test);
 

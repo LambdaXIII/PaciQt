@@ -42,7 +42,7 @@ public slots:
 
 protected:
   BaseLoader *workLoader;
-  QThread workThread;
+//  QThread workThread;
 
 }; //namespace Multiloader
 

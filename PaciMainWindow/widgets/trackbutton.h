@@ -13,7 +13,9 @@ public:
   Track *track;
   int trackIndex;
 
-  void paintEvent(QPaintEvent *event) override;
+  void setupLabel();
+
+//  void paintEvent(QPaintEvent *event) override;
 };
 
 #endif // TRACKBUTTON_H

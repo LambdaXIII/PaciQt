@@ -14,16 +14,17 @@ Multiloader::Multiloader(QString _path, QString _selectedFilter, QObject *parent
 {
   m_format = searchFormat(_selectedFilter);
   workLoader = Multiloader::functionMap[m_format](filename());
-  workLoader->moveToThread(&workThread);
-  connect(&workThread, &QThread::finished, workLoader, &BaseLoader::deleteLater);
-  connect(&workThread, &QThread::started, workLoader, &BaseLoader::doWork);
+//  workLoader->moveToThread(&workThread);
+//  connect(&workThread, &QThread::finished, workLoader, &BaseLoader::deleteLater);
+//  connect(&workThread, &QThread::started, workLoader, &BaseLoader::doWork);
 //  connect(workLoader, &BaseLoader::resultReady, this, &Multiloader::saveResult);
 }
 
 Multiloader::~Multiloader()
 {
-  workThread.quit();
-  workThread.wait();
+//  workThread.quit();
+//  workThread.wait();
+  workLoader->deleteLater();
 }
 
 const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap =  {
@@ -48,15 +49,17 @@ QSharedPointer<Sequence> Multiloader::getSequence()
   }
 
   QProgressDialog progress(tr("正在解析..."), tr("停止"), 0, 100);
+  progress.setWindowModality(Qt::WindowModal);
   connect(workLoader, &BaseLoader::totalProgressUpdated, &progress, &QProgressDialog::setMaximum);
   connect(workLoader, &BaseLoader::currentProgressUpdated, &progress, &QProgressDialog::setValue);
   connect(workLoader, &BaseLoader::messageUpdated, &progress, &QProgressDialog::setLabelText);
   connect(&progress, &QProgressDialog::canceled, workLoader, &BaseLoader::cancelWork);
-  Sequence *result_sequence;
-  connect(workLoader, &BaseLoader::resultReady, [&](Sequence * x) {
-    result_sequence = x;
-  });
-  workThread.start();
-  workThread.wait();
+
+  Sequence *result_sequence = workLoader->doWork();
+//  connect(workLoader, &BaseLoader::resultReady, [&](Sequence * x) {
+//    result_sequence = x;
+//  });
+//  workThread.start();
+//  workThread.wait();
   return QSharedPointer<Sequence>(result_sequence);
 }

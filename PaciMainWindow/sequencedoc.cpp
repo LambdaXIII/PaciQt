@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QApplication>
+#include <QDebug>
 
 SequenceDoc::SequenceDoc(QObject *parent) : QObject(parent)
 {
@@ -36,6 +37,7 @@ void SequenceDoc::open()
     setCurrentFormatFilter(selectedFilter);
     Multiloader loader(filePath, selectedFilter);
     setSequence(loader.getSequence());
+
     setCurrentFilename(filePath);
     setEdited(false);
     emit sequenceOpened();
@@ -94,6 +96,7 @@ void SequenceDoc::setSequence(QSharedPointer<Sequence> s)
   if (m_sequence != s) {
     m_sequence = s;
     emit sequenceChanged(m_sequence);
+    qDebug() << "[SequenceDoc]:New Sequence" << m_sequence->sequenceName() << "setted.";
   }
 }
 

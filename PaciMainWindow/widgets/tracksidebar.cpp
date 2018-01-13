@@ -5,7 +5,9 @@
 TrackSideBar::TrackSideBar(QWidget *parent) : QScrollArea(parent)
 {
 //  QWidget *widget = new QWidget()
+  setMaximumWidth(150);
   QVBoxLayout *box = new QVBoxLayout();
+  box->setContentsMargins(0, 0, 0, 0);
   setLayout(box);
   buttonGroup = new QButtonGroup(this);
 }
