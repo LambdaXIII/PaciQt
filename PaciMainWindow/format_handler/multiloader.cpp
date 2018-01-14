@@ -3,7 +3,7 @@
 #include <QProgressDialog>
 #include <QApplication>
 #include <QDebug>
-
+#include <QLabel>
 #include "fcp7xmlloader.h"
 
 using namespace FormatProfile;
@@ -53,6 +53,11 @@ QSharedPointer<Sequence> Multiloader::getSequence()
 
   QProgressDialog progress(tr("正在解析..."), tr("停止"), 0, 100);
   progress.setWindowModality(Qt::WindowModal);
+
+  QLabel *label = new QLabel();
+  label->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+  progress.setLabel(label);
+
   connect(workLoader, &BaseLoader::totalProgressUpdated, &progress, &QProgressDialog::setMaximum);
   connect(workLoader, &BaseLoader::currentProgressUpdated, &progress, &QProgressDialog::setValue);
   connect(workLoader, &BaseLoader::messageUpdated, &progress, &QProgressDialog::setLabelText);
