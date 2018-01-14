@@ -48,7 +48,11 @@
       <property name="handleWidth">
        <number>1</number>
       </property>
-      <widget class="ClipsTable" name="clipsTable"/>
+      <widget class="ClipsTable" name="clipsTable">
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+      </widget>
       <widget class="QWidget" name="widget_2" native="true">
        <property name="minimumSize">
         <size>

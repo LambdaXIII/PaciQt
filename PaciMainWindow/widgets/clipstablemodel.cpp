@@ -64,6 +64,11 @@ QVariant ClipsTableModel::data(const QModelIndex &index, int role) const
     }
   }
 
+  if (role == Qt::TextAlignmentRole) {
+    if (col <= 1)
+      return Qt::AlignCenter;
+  }
+
   return QVariant();
 }
 
