@@ -53,6 +53,7 @@ QSharedPointer<Sequence> Multiloader::getSequence()
 
   QProgressDialog progress(tr("正在解析..."), tr("停止"), 0, 100);
   progress.setWindowModality(Qt::WindowModal);
+  progress.setWindowFlags(Qt::Tool);
 
   QLabel *label = new QLabel();
   label->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
