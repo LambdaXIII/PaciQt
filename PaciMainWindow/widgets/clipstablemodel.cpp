@@ -1,8 +1,9 @@
 #include "clipstablemodel.h"
 #include "sequencedoc.h"
+#include "timebase.h"
 
 ClipsTableModel::ClipsTableModel(QObject *parent, int index)
-  : QAbstractTableModel(parent), m_trackIndex(index)
+  : QAbstractTableModel(parent), m_trackIndex(index), m_showTC(false)
 {
   m_headers << tr("开始时间") << tr("结束时间") << tr("内容");
 }
@@ -54,10 +55,10 @@ QVariant ClipsTableModel::data(const QModelIndex &index, int role) const
 
   if (role == Qt::DisplayRole) {
     if (col == 0) {
-      return clip->startPoint();
+      return tcConvert(clip->startPoint());
     }
     if (col == 1) {
-      return clip->endPoint();
+      return tcConvert(clip->endPoint());
     }
     if (col == 2) {
       return clip->content();
@@ -86,4 +87,21 @@ bool ClipsTableModel::removeRows(int row, int count, const QModelIndex &parent)
   // FIXME: Implement me!
   endRemoveRows();
   return true;
+}
+
+QString ClipsTableModel::tcConvert(int frames) const
+{
+  if (m_showTC) {
+    return Timebase::frameToTimecode(frames, GlobalSequence->timebase());
+  } else {
+    return QString::number(frames);
+  }
+}
+
+void ClipsTableModel::setShowTC(bool x)
+{
+  if (x != m_showTC) {
+    m_showTC = x;
+    emit dataChanged(index(0, 0), index(rowCount(), 1));
+  }
 }

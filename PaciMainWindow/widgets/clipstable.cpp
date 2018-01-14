@@ -16,3 +16,12 @@ void ClipsTable::acceptNewTrackIndex(int x)
   setModel(new ClipsTableModel(this, x));
   old->deleteLater();
 }
+
+void ClipsTable::showTC(bool x)
+{
+  if (model()) {
+    auto a = qobject_cast<ClipsTableModel*>( model());
+    a->setShowTC(x);
+
+  }
+}

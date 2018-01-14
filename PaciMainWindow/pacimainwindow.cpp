@@ -17,6 +17,8 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   connect(ui->actionTest, &QAction::triggered, this, &PaciMainWindow::run_test);
 
   connect(ui->actionOpen, &QAction::triggered, GlobalDocument, &SequenceDoc::open);
+
+  connect(ui->actionShowTC, &QAction::triggered, ui->clipsTable, &ClipsTable::showTC);
 }
 
 PaciMainWindow::~PaciMainWindow()

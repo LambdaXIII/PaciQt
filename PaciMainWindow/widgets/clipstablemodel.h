@@ -34,6 +34,11 @@ public:
 private:
   int m_trackIndex;
   QStringList m_headers;
+  bool m_showTC;
+  QString tcConvert(int frames) const;
+
+public slots:
+  void setShowTC(bool x);
 };
 
 #endif // CLIPSTABLEMODEL_H
