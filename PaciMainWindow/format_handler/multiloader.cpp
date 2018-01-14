@@ -4,6 +4,8 @@
 #include <QApplication>
 #include <QDebug>
 
+#include "fcp7xmlloader.h"
+
 using namespace FormatProfile;
 
 
@@ -29,6 +31,7 @@ Multiloader::~Multiloader()
 
 const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap =  {
   {PlainText, &createInstance<TextLoader>},
+  {Fcp7Xml, &createInstance<Fcp7XMLLoader>}
 };
 
 const QMap<Format, std::function<void(BaseLoader*)>> Multiloader::setupMap = {

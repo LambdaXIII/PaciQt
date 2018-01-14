@@ -10,15 +10,18 @@ namespace FormatProfile {
 
 enum Format {
   Unknown,
-  PlainText
+  PlainText,
+  Fcp7Xml,
 };
 
 const QMap<Format, QString> formatNames{
   {PlainText, "文本文件"},
+  {Fcp7Xml, "FCP7 XML 文件"}
 };
 
 const QMap<Format, QString> formatSuffixes{
   {PlainText, "*.txt"},
+  {Fcp7Xml, "*.xml"}
 };
 
 QString getFilter(Format f);
