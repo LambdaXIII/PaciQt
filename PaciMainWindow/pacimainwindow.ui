@@ -93,6 +93,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSaveAs"/>
    <addaction name="actionShowTC"/>
    <addaction name="actionTest"/>
   </widget>
@@ -112,6 +114,16 @@
    </property>
    <property name="text">
     <string>显示时间码</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>保存文件</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>另存为</string>
    </property>
   </action>
  </widget>
