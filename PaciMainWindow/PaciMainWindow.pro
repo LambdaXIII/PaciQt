@@ -32,7 +32,9 @@ SOURCES += \
     format_handler/multiloader.cpp \
 #    sequencedoc.cpp
     format_handler/multisaver.cpp \
-    sequencedoc.cpp
+    sequencedoc.cpp \
+    widgets/clipstable.cpp \
+    widgets/clipstablemodel.cpp
 
 HEADERS += \
         pacimainwindow.h \
@@ -42,7 +44,9 @@ HEADERS += \
     format_handler/multiloader.h \
 #    sequencedoc.h
     format_handler/multisaver.h \
-    sequencedoc.h
+    sequencedoc.h \
+    widgets/clipstable.h \
+    widgets/clipstablemodel.h
 
 FORMS += \
         pacimainwindow.ui

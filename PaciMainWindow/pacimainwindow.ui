@@ -48,7 +48,7 @@
       <property name="handleWidth">
        <number>1</number>
       </property>
-      <widget class="QTableView" name="tableView"/>
+      <widget class="ClipsTable" name="clipsTable"/>
       <widget class="QWidget" name="widget_2" native="true">
        <property name="minimumSize">
         <size>
@@ -115,6 +115,11 @@
    <extends>QWidget</extends>
    <header>widgets/tracksidebar.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ClipsTable</class>
+   <extends>QTableView</extends>
+   <header>widgets/clipstable.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

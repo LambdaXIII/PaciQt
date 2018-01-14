@@ -28,6 +28,7 @@ void TrackSideBar::refresh()
   TrackBox *tracks = GlobalSequence->trackBox();
   for (int i = 0; i < tracks->size(); i++) {
     TrackButton *button = new TrackButton(i, GlobalSequence->trackBox()->at(i));
+    connect(button, &TrackButton::clicked, this, &TrackSideBar::handleSelection);
     buttonGroup->addButton(button);
     layout()->addWidget(button);
   }

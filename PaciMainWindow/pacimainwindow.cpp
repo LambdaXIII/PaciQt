@@ -12,6 +12,8 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   connect(GlobalDocument, &SequenceDoc::editedChanged, ui->trackSideBar, &TrackSideBar::refresh);
   connect(GlobalDocument, &SequenceDoc::sequenceChanged, ui->trackSideBar, &TrackSideBar::refresh);
 
+  connect(ui->trackSideBar, &TrackSideBar::trackSelected, ui->clipsTable, &ClipsTable::acceptNewTrackIndex);
+
   connect(ui->actionTest, &QAction::triggered, this, &PaciMainWindow::run_test);
 
   connect(ui->actionOpen, &QAction::triggered, GlobalDocument, &SequenceDoc::open);
