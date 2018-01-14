@@ -8,7 +8,7 @@ Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilt
   m_format = searchFormat(_selectedFilter);
 
   workSaver = Multisaver::saverMap[m_format](sequence(), filename());
-  workSaver->moveToThread(&workThread);
+//  workSaver->moveToThread(&workThread);
 //  connect(&workThread, &QThread::started, workSaver, &BaseSaver::doWork);
 //  connect(&workThread, &QThread::finished, workSaver, &BaseSaver::deleteLater);
 
