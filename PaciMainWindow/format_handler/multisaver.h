@@ -36,7 +36,7 @@ public:
 
 protected:
   BaseSaver *workSaver;
-  QThread workThread;
+//  QThread workThread;
 
 signals:
 

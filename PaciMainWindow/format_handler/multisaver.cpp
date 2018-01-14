@@ -9,8 +9,8 @@ Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilt
 
   workSaver = Multisaver::saverMap[m_format](sequence(), filename());
   workSaver->moveToThread(&workThread);
-  connect(&workThread, &QThread::started, workSaver, &BaseSaver::doWork);
-  connect(&workThread, &QThread::finished, workSaver, &BaseSaver::deleteLater);
+//  connect(&workThread, &QThread::started, workSaver, &BaseSaver::doWork);
+//  connect(&workThread, &QThread::finished, workSaver, &BaseSaver::deleteLater);
 
 
 }
@@ -18,8 +18,9 @@ Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilt
 
 Multisaver::~Multisaver()
 {
-  workThread.quit();
-  workThread.wait();
+//  workThread.quit();
+//  workThread.wait();
+  workSaver->deleteLater();
 }
 
 const QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> Multisaver::saverMap = {
@@ -41,6 +42,8 @@ void Multisaver::save()
   connect(workSaver, &BaseSaver::messageUpdated, &progress, &QProgressDialog::setLabelText);
   connect(&progress, &QProgressDialog::canceled, workSaver, &BaseSaver::cancelWork);
 
-  workThread.start();
-  workThread.wait();
+//  workThread.start();
+//  workThread.wait();
+
+  workSaver->doWork();
 }
