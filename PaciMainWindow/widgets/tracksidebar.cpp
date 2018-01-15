@@ -32,6 +32,14 @@ void TrackSideBar::refresh()
     buttonGroup->addButton(button);
     layout()->addWidget(button);
   }
+
+  if (GlobalSequence->trackBox()->size() <= 1)
+    this->setVisible(false);
+  else
+    this->setVisible(true);
+
+  buttonGroup->buttons().first()->setChecked(true);
+  emit trackSelected(0);
 }
 
 void TrackSideBar::handleSelection()
