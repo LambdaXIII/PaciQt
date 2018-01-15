@@ -10,6 +10,8 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   ui->setupUi(this);
   ui->trackSideBar->setVisible(false);
 
+  connect(GlobalDocument, &SequenceDoc::currentFilenameChanged, this, &PaciMainWindow::setWindowFilePath);
+
   connect(GlobalDocument, &SequenceDoc::editedChanged, ui->trackSideBar, &TrackSideBar::refresh);
   connect(GlobalDocument, &SequenceDoc::sequenceChanged, ui->trackSideBar, &TrackSideBar::refresh);
 
