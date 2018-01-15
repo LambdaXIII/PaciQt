@@ -1,8 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    PaciCore \
     CandyQt \
+    PaciCore \
     PaciFormat \
     PaciWidget
 

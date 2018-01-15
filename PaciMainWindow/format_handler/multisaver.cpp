@@ -1,6 +1,8 @@
 #include "multisaver.h"
 #include <QProgressDialog>
-
+#include <QInputDialog>
+#include <QApplication>
+#include "fcp7xmlsaver.h"
 
 Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilter, QObject *parent)
   : QObject(parent), m_filename(_path), m_sequence(sequence_ptr)
@@ -8,11 +10,6 @@ Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilt
   m_format = searchFormat(_selectedFilter);
 
   workSaver = Multisaver::saverMap[m_format](sequence(), filename());
-//  workSaver->moveToThread(&workThread);
-//  connect(&workThread, &QThread::started, workSaver, &BaseSaver::doWork);
-//  connect(&workThread, &QThread::finished, workSaver, &BaseSaver::deleteLater);
-
-
 }
 
 
@@ -25,9 +22,12 @@ Multisaver::~Multisaver()
 
 const QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> Multisaver::saverMap = {
   {PlainText, &createInstance<TextSaver>},
+  {Fcp7Xml, &createInstance<Fcp7XMLSaver>}
 };
 
-const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {};
+const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {
+  {Fcp7Xml, &Multisaver::setupFcp7Xml}
+};
 
 void Multisaver::save()
 {
@@ -46,4 +46,13 @@ void Multisaver::save()
 //  workThread.wait();
 
   workSaver->doWork();
+}
+
+
+void Multisaver::setupFcp7Xml(BaseSaver *saver)
+{
+  Fcp7XMLSaver *s = qobject_cast<Fcp7XMLSaver*>(saver);
+  QMap<QString, bool> map {{tr("空心字"), true}, {tr("普通文本"), false}};
+  QString res = QInputDialog::getItem(QApplication::focusWidget(), tr("想导出哪种字幕？"), tr("请选择字幕生成器类型"), map.keys());
+  s->setUseOutlineText(map[res]);
 }

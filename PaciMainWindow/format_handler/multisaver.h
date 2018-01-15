@@ -38,6 +38,8 @@ protected:
   BaseSaver *workSaver;
 //  QThread workThread;
 
+  static void setupFcp7Xml(BaseSaver *saver);
+
 signals:
 
 public slots:
