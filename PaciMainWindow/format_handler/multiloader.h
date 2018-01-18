@@ -34,17 +34,18 @@ public:
 
   QSharedPointer<Sequence> getSequence();
 
-  static QString  getAllFilters();
+  static QString getAllFilters();
 
 signals:
-//  void startLoading();
+
 
 public slots:
-//  void saveResult(Sequence *result);
+
 
 protected:
   BaseLoader *workLoader;
-//  QThread workThread;
+
+  static void setupCsv(BaseLoader *loader);
 
 }; //namespace Multiloader
 

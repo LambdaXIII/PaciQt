@@ -5,6 +5,8 @@
 #include <QDebug>
 #include <QLabel>
 #include "fcp7xmlloader.h"
+#include "csvloader.h"
+
 
 using namespace FormatProfile;
 
@@ -31,18 +33,14 @@ Multiloader::~Multiloader()
 
 const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap =  {
   {PlainText, &createInstance<TextLoader>},
-  {Fcp7Xml, &createInstance<Fcp7XMLLoader>}
+  {Fcp7Xml, &createInstance<Fcp7XMLLoader>},
+  {Csv, &createInstance<CsvLoader>}
 };
 
 const QMap<Format, std::function<void(BaseLoader*)>> Multiloader::setupMap = {
+  {Csv, &Multiloader::setupCsv},
 };
 
-/*
-void Multiloader::saveResult(Sequence *result)
-{
-  m_result = result;
-}
-*/
 
 QString Multiloader::getAllFilters()
 {
@@ -80,4 +78,13 @@ QSharedPointer<Sequence> Multiloader::getSequence()
 //  workThread.start();
 //  workThread.wait();
   return QSharedPointer<Sequence>(result_sequence);
+}
+
+void Multiloader::setupCsv(BaseLoader *loader)
+{
+  CsvLoader *s = qobject_cast<CsvLoader>(loader);
+  QStringList xs;
+  xs << tr("帧数") << tr("时间码") ;
+  QString res = QInputDialog::getItem(QApplication::focusWidget(), tr("时间的表示方式"), tr("选择文件中时间的保存方式"), xs);
+  s->setUseTimecode(res == tr("时间码"));
 }

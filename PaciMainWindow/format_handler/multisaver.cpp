@@ -74,7 +74,7 @@ void Multisaver::setupCsv(BaseSaver *saver)
 {
   CsvSaver *s = qobject_cast<CsvSaver*>(saver);
   QStringList xs;
-  xs << tr("时间码") << tr("帧数");
+  xs << tr("帧数") << tr("时间码") ;
   QString res = QInputDialog::getItem(QApplication::focusWidget(), tr("时间的表示方式"), tr("选择时间的保存方式"), xs);
   s->setUseTimecode(res == tr("时间码"));
 }
