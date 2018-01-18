@@ -49,6 +49,9 @@
        <number>1</number>
       </property>
       <widget class="ClipsTable" name="clipsTable">
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
        <attribute name="horizontalHeaderStretchLastSection">
         <bool>true</bool>
        </attribute>
