@@ -44,6 +44,15 @@ void Multiloader::saveResult(Sequence *result)
 }
 */
 
+QString Multiloader::getAllFilters()
+{
+  QStringList xs;
+  for (Format a : Multiloader::functionMap.keys()) {
+    xs << FormatProfile::getFilter(a);
+  }
+  return xs.join(";;");
+}
+
 QSharedPointer<Sequence> Multiloader::getSequence()
 {
   if (Multiloader::setupMap.keys().contains(m_format)) {

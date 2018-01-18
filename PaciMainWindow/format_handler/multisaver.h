@@ -35,6 +35,8 @@ public:
 
   const static QMap<Format, std::function<void(BaseSaver*)>> setupMap;
 
+  static QString getAllFilters();
+
 protected:
   BaseSaver *workSaver;
 //  QThread workThread;

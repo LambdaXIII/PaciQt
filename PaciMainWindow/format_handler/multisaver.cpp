@@ -52,6 +52,15 @@ void Multisaver::save()
   workSaver->doWork();
 }
 
+QString Multisaver::getAllFilters()
+{
+  QStringList xs;
+  for (Format a : Multisaver::saverMap.keys()) {
+    xs << FormatProfile::getFilter(a);
+  }
+  return xs.join(";;");
+}
+
 
 void Multisaver::setupFcp7Xml(BaseSaver *saver)
 {

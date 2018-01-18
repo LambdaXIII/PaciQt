@@ -34,6 +34,8 @@ public:
 
   QSharedPointer<Sequence> getSequence();
 
+  static QString  getAllFilters();
+
 signals:
 //  void startLoading();
 
