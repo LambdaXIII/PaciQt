@@ -7,7 +7,8 @@
 #include "formatprofile.h"
 #include "candy_macros.h"
 #include "sequence.h"
-#include "textsaver.h"
+#include "base/basesaver.h"
+
 
 using namespace FormatProfile;
 
@@ -39,6 +40,7 @@ protected:
 //  QThread workThread;
 
   static void setupFcp7Xml(BaseSaver *saver);
+  static void setupCsv(BaseSaver *saver);
 
 signals:
 

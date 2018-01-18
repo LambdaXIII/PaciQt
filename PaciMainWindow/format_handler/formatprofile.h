@@ -12,16 +12,19 @@ enum Format {
   Unknown,
   PlainText,
   Fcp7Xml,
+  Csv,
 };
 
 const QMap<Format, QString> formatNames{
   {PlainText, "文本台词本"},
-  {Fcp7Xml, "FCP7 XML 文件"}
+  {Fcp7Xml, "FCP7 XML 文件"},
+  {Csv, "逗号分割值"}
 };
 
 const QMap<Format, QString> formatSuffixes{
   {PlainText, "*.txt"},
-  {Fcp7Xml, "*.xml"}
+  {Fcp7Xml, "*.xml"},
+  {Csv, "*.csv"}
 };
 
 QString getFilter(Format f);
