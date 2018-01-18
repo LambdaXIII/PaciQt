@@ -1,7 +1,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-#QtXlsxWriter \
     CandyQt \
     PaciCore \
     PaciFormat \

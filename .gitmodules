@@ -7,6 +7,6 @@
 [submodule "PaciFormat"]
 	path = PaciFormat
 	url = git@github.com:LambdaXIII/PaciFormat.git
-[submodule "QtXlsxWriter"]
-	path = QtXlsxWriter
+[submodule "thirdparty/QtXlsxWriter"]
+	path = thirdparty/QtXlsxWriter
 	url = https://github.com/VSRonin/QtXlsxWriter.git
