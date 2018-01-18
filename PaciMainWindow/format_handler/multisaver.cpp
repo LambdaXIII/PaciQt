@@ -5,6 +5,7 @@
 #include "fcp7xmlsaver.h"
 #include "textsaver.h"
 #include "csvsaver.h"
+#include "widgets/csvoptiondialog.h"
 
 Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilter, QObject *parent)
   : QObject(parent), m_filename(_path), m_sequence(sequence_ptr)
@@ -73,8 +74,8 @@ void Multisaver::setupFcp7Xml(BaseSaver *saver)
 void Multisaver::setupCsv(BaseSaver *saver)
 {
   CsvSaver *s = qobject_cast<CsvSaver*>(saver);
-  QStringList xs;
-  xs << tr("帧数") << tr("时间码") ;
-  QString res = QInputDialog::getItem(QApplication::focusWidget(), tr("时间的表示方式"), tr("选择时间的保存方式"), xs);
-  s->setUseTimecode(res == tr("时间码"));
+  auto *dialog = new CsvOptionDialog(CsvOptionDialog::Saving, QApplication::focusWidget());
+  dialog->exec();
+  s->setUseTimecode(dialog->getUseTimecode());
+  dialog->deleteLater();
 }

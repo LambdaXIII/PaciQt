@@ -7,6 +7,8 @@
 #include "fcp7xmlloader.h"
 #include "csvloader.h"
 
+#include "widgets/csvoptiondialog.h"
+
 
 using namespace FormatProfile;
 
@@ -82,9 +84,10 @@ QSharedPointer<Sequence> Multiloader::getSequence()
 
 void Multiloader::setupCsv(BaseLoader *loader)
 {
-  CsvLoader *s = qobject_cast<CsvLoader>(loader);
-  QStringList xs;
-  xs << tr("帧数") << tr("时间码") ;
-  QString res = QInputDialog::getItem(QApplication::focusWidget(), tr("时间的表示方式"), tr("选择文件中时间的保存方式"), xs);
-  s->setUseTimecode(res == tr("时间码"));
+  CsvLoader *s = qobject_cast<CsvLoader*>(loader);
+  auto *dialog = new CsvOptionDialog(CsvOptionDialog::Loading, QApplication::focusWidget());
+  dialog->exec();
+  s->setTimebase(dialog->getTimebase());
+  s->setUseTimecode(dialog->getUseTimecode());
+  dialog->deleteLater();
 }

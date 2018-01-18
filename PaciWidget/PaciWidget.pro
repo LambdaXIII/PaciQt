@@ -23,11 +23,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    timecodeclock.cpp
+    timecodeclock.cpp \
+    timebasecombobox.cpp \
+    usetimecodeselector.cpp
 
 HEADERS += \
         paciwidget_global.h \ 
-    timecodeclock.h
+    timecodeclock.h \
+    timebasecombobox.h \
+    usetimecodeselector.h
 
 unix {
     target.path = /usr/lib

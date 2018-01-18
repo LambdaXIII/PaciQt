@@ -34,7 +34,8 @@ SOURCES += \
     format_handler/multisaver.cpp \
     sequencedoc.cpp \
     widgets/clipstable.cpp \
-    widgets/clipstablemodel.cpp
+    widgets/clipstablemodel.cpp \
+    widgets/csvoptiondialog.cpp
 
 HEADERS += \
         pacimainwindow.h \
@@ -46,10 +47,12 @@ HEADERS += \
     format_handler/multisaver.h \
     sequencedoc.h \
     widgets/clipstable.h \
-    widgets/clipstablemodel.h
+    widgets/clipstablemodel.h \
+    widgets/csvoptiondialog.h
 
 FORMS += \
-        pacimainwindow.ui
+        pacimainwindow.ui \
+    widgets/csvoptiondialog.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/release/ -lPaciWidget
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/debug/ -lPaciWidget
