@@ -15,7 +15,7 @@ enum Format {
 };
 
 const QMap<Format, QString> formatNames{
-  {PlainText, "文本文件"},
+  {PlainText, "文本台词本"},
   {Fcp7Xml, "FCP7 XML 文件"}
 };
 
