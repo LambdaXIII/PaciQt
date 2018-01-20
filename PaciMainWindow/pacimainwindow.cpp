@@ -24,6 +24,9 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   connect(ui->actionSaveAs, &QAction::triggered, GlobalDocument, &SequenceDoc::saveAs);
 
   connect(ui->actionShowTC, &QAction::triggered, ui->clipsTable, &ClipsTable::showTC);
+
+  connect(ui->clipsTable, &ClipsTable::clipDoubleClicked, ui->clipEditor, &ClipEditor::editClip);
+  connect(ui->clipEditor, &ClipEditor::editingDone, ui->clipsTable, &ClipsTable::setContent);
 }
 
 PaciMainWindow::~PaciMainWindow()

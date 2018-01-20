@@ -7,6 +7,7 @@
 
 class TrackButton : public QPushButton
 {
+  Q_OBJECT
 public:
   TrackButton(int _index, Track *_track, QWidget *parent = 0);
 

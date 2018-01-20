@@ -31,6 +31,8 @@ public:
   bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 //  bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
 
+
+
 private:
   int m_trackIndex;
   QStringList m_headers;
@@ -39,6 +41,7 @@ private:
 
 public slots:
   void setShowTC(bool x);
+  void setContent(int row, QString new_content);
 };
 
 #endif // CLIPSTABLEMODEL_H

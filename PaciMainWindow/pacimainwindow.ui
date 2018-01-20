@@ -56,23 +56,13 @@
         <bool>true</bool>
        </attribute>
       </widget>
-      <widget class="QWidget" name="widget_2" native="true">
+      <widget class="ClipEditor" name="clipEditor" native="true">
        <property name="minimumSize">
         <size>
          <width>150</width>
          <height>0</height>
         </size>
        </property>
-       <widget class="TimecodeClock" name="widget_3" native="true">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>221</width>
-          <height>21</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
      </widget>
     </item>
@@ -133,12 +123,6 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>TimecodeClock</class>
-   <extends>QWidget</extends>
-   <header>timecodeclock.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>TrackSideBar</class>
    <extends>QWidget</extends>
    <header>widgets/tracksidebar.h</header>
@@ -148,6 +132,12 @@
    <class>ClipsTable</class>
    <extends>QTableView</extends>
    <header>widgets/clipstable.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ClipEditor</class>
+   <extends>QWidget</extends>
+   <header>widgets/clipeditor.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

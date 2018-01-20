@@ -105,3 +105,12 @@ void ClipsTableModel::setShowTC(bool x)
     emit dataChanged(index(0, 0), index(rowCount(), 1));
   }
 }
+
+void ClipsTableModel::setContent(int row, QString new_content)
+{
+  if (currentTrack()->at(row)->content() != new_content) {
+    currentTrack()->at(row)->setContent(new_content);
+    GlobalDocument->justEdited();
+    emit dataChanged(index(row, 2), index(row, 2), {Qt::DisplayRole});
+  }
+}
