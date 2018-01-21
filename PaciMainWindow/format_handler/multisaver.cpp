@@ -6,6 +6,7 @@
 #include "textsaver.h"
 #include "csvsaver.h"
 #include "widgets/csvoptiondialog.h"
+#include "widgets/trackselector.h"
 
 Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilter, QObject *parent)
   : QObject(parent), m_filename(_path), m_sequence(sequence_ptr)
@@ -62,6 +63,11 @@ QString Multisaver::getAllFilters()
   return xs.join(";;");
 }
 
+void Multisaver::setupText(BaseSaver *saver)
+{
+  TextSaver *s = qobject_cast<TextSaver*>(saver);
+  s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence(), QApplication::focusWidget()));
+}
 
 void Multisaver::setupFcp7Xml(BaseSaver *saver)
 {
@@ -74,6 +80,7 @@ void Multisaver::setupFcp7Xml(BaseSaver *saver)
 void Multisaver::setupCsv(BaseSaver *saver)
 {
   CsvSaver *s = qobject_cast<CsvSaver*>(saver);
+  s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence(), QApplication::focusWidget()));
   auto *dialog = new CsvOptionDialog(CsvOptionDialog::Saving, QApplication::focusWidget());
   dialog->exec();
   s->setUseTimecode(dialog->getUseTimecode());

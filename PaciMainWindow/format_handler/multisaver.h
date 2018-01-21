@@ -41,6 +41,7 @@ protected:
   BaseSaver *workSaver;
 //  QThread workThread;
 
+  static void setupText(BaseSaver *saver);
   static void setupFcp7Xml(BaseSaver *saver);
   static void setupCsv(BaseSaver *saver);
 
