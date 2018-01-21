@@ -36,7 +36,9 @@ SOURCES += \
     widgets/clipstable.cpp \
     widgets/clipstablemodel.cpp \
     widgets/csvoptiondialog.cpp \
-    widgets/clipeditor.cpp
+    widgets/clipeditor.cpp \
+    widgets/trackselector.cpp \
+    widgets/trackselectorbutton.cpp
 
 HEADERS += \
         pacimainwindow.h \
@@ -50,12 +52,15 @@ HEADERS += \
     widgets/clipstable.h \
     widgets/clipstablemodel.h \
     widgets/csvoptiondialog.h \
-    widgets/clipeditor.h
+    widgets/clipeditor.h \
+    widgets/trackselector.h \
+    widgets/trackselectorbutton.h
 
 FORMS += \
         pacimainwindow.ui \
     widgets/csvoptiondialog.ui \
-    widgets/clipeditor.ui
+    widgets/clipeditor.ui \
+    widgets/trackselector.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/release/ -lPaciWidget
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/debug/ -lPaciWidget

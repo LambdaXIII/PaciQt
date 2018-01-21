@@ -3,6 +3,8 @@
 #include <QFileDialog>
 #include <QDebug>
 
+#include "widgets/trackselector.h"
+
 PaciMainWindow::PaciMainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::PaciMainWindow)
@@ -37,7 +39,8 @@ PaciMainWindow::~PaciMainWindow()
 
 void PaciMainWindow::run_test()
 {
-  QString s;
-  QString file = QFileDialog::getOpenFileName(this, "TEXT", QDir::homePath(), "Try(*.txt);;All(*.*)", &s);
-  qDebug() << s;
+  auto a = new TrackSelector(GlobalSequence.data(), this);
+  a->exec();
+  qDebug() << a->currentTrackIndex();
+  a->deleteLater();
 }
