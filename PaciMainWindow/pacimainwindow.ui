@@ -85,6 +85,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionCreate"/>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
    <addaction name="actionSaveAs"/>
@@ -117,6 +118,11 @@
   <action name="actionSaveAs">
    <property name="text">
     <string>另存为</string>
+   </property>
+  </action>
+  <action name="actionCreate">
+   <property name="text">
+    <string>新建序列</string>
    </property>
   </action>
  </widget>
