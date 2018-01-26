@@ -5,6 +5,7 @@
 #include "fcp7xmlsaver.h"
 #include "textsaver.h"
 #include "csvsaver.h"
+#include "srtsaver.h"
 #include "widgets/csvoptiondialog.h"
 #include "widgets/trackselector.h"
 
@@ -27,7 +28,8 @@ Multisaver::~Multisaver()
 const QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> Multisaver::saverMap = {
   {PlainText, &createInstance<TextSaver>},
   {Fcp7Xml, &createInstance<Fcp7XMLSaver>},
-  {Csv, &createInstance<CsvSaver>}
+  {Csv, &createInstance<CsvSaver>},
+  {Srt, &createInstance<SrtSaver>}
 };
 
 const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {
