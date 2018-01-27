@@ -112,7 +112,7 @@ void Multisaver::setupCsv(BaseSaver *saver)
 
 void Multisaver::setupSrt(BaseSaver *saver)
 {
-  CsvSaver *s = qobject_cast<CsvSaver*>(saver);
+  SrtSaver *s = qobject_cast<SrtSaver*>(saver);
 
   if (s->sequence()->trackBox()->size() > 1) {
     auto export_all = QMessageBox::question(
@@ -122,7 +122,7 @@ void Multisaver::setupSrt(BaseSaver *saver)
     if (export_all == QMessageBox::Yes) {
       s->setTrackIndex(-1);
     } else {
-      s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence(), QApplication::focusWidget()));
+      s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence()));
     }
   }
 }
