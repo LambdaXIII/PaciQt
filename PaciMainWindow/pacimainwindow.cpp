@@ -1,5 +1,6 @@
 #include "pacimainwindow.h"
 #include "ui_pacimainwindow.h"
+#include "configcontroller.h"
 #include <QFileDialog>
 #include <QDebug>
 
@@ -30,6 +31,8 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
 
   connect(ui->clipsTable, &ClipsTable::clipDoubleClicked, ui->clipEditor, &ClipEditor::editClip);
   connect(ui->clipEditor, &ClipEditor::editingDone, ui->clipsTable, &ClipsTable::setContent);
+
+  connect(ui->actionResetWarnings, &QAction::triggered, &ConfigController::resetWarnings);
 }
 
 PaciMainWindow::~PaciMainWindow()

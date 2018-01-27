@@ -4,6 +4,8 @@
 #include <QApplication>
 #include <QDebug>
 #include <QLabel>
+#include <QMessageBox>
+#include <QSettings>
 #include "fcp7xmlloader.h"
 #include "csvloader.h"
 
@@ -53,8 +55,25 @@ QString Multiloader::getAllFilters()
   return xs.join(";;");
 }
 
+void Multiloader::showInfomation()
+{
+  auto info = workLoader->info();
+  auto setting_key = formatNames[format()] + "_loader_info_showed";
+  if (! info.isEmpty()) {
+    QSettings settings;
+    settings.beginGroup(ConfigController::warningGroup);
+    if (! settings.value(setting_key).toBool()) {
+      QMessageBox::information(QApplication::focusWidget(), tr("重要提示"), info, QMessageBox::Ok);
+      settings.setValue(setting_key, true);
+    }
+    settings.endGroup();
+  }
+}
+
 QSharedPointer<Sequence> Multiloader::getSequence()
 {
+  showInfomation();
+
   if (Multiloader::setupMap.keys().contains(m_format)) {
     auto setupFun = Multiloader::setupMap[m_format];
     setupFun(workLoader);

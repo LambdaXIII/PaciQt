@@ -90,6 +90,7 @@
    <addaction name="actionSave"/>
    <addaction name="actionSaveAs"/>
    <addaction name="actionShowTC"/>
+   <addaction name="actionResetWarnings"/>
    <addaction name="actionTest"/>
   </widget>
   <action name="actionTest">
@@ -123,6 +124,11 @@
   <action name="actionCreate">
    <property name="text">
     <string>新建序列</string>
+   </property>
+  </action>
+  <action name="actionResetWarnings">
+   <property name="text">
+    <string>重置提示信息</string>
    </property>
   </action>
  </widget>

@@ -3,6 +3,8 @@
 #include <QInputDialog>
 #include <QApplication>
 #include <QMessageBox>
+#include <QSettings>
+#include "configcontroller.h"
 #include "fcp7xmlsaver.h"
 #include "textsaver.h"
 #include "csvsaver.h"
@@ -39,8 +41,25 @@ const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {
   {Srt, &Multisaver::setupSrt}
 };
 
+void Multisaver::showInfomation()
+{
+  auto info = workSaver->info();
+  auto setting_key = formatNames[format()] + "_saver_info_showed";
+  if (! info.isEmpty()) {
+    QSettings settings;
+    settings.beginGroup(ConfigController::warningGroup);
+    if (! settings.value(setting_key).toBool()) {
+      QMessageBox::information(QApplication::focusWidget(), tr("重要提示"), info, QMessageBox::Ok);
+      settings.setValue(setting_key, true);
+    }
+    settings.endGroup();
+  }
+}
+
 void Multisaver::save()
 {
+  showInfomation();
+
   if (Multisaver::setupMap.keys().contains(m_format)) {
     auto setupFun = Multisaver::setupMap[m_format];
     setupFun(workSaver);

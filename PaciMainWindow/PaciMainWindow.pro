@@ -38,7 +38,8 @@ SOURCES += \
     widgets/csvoptiondialog.cpp \
     widgets/clipeditor.cpp \
     widgets/trackselector.cpp \
-    widgets/trackselectorbutton.cpp
+    widgets/trackselectorbutton.cpp \
+    configcontroller.cpp
 
 HEADERS += \
         pacimainwindow.h \
@@ -54,7 +55,8 @@ HEADERS += \
     widgets/csvoptiondialog.h \
     widgets/clipeditor.h \
     widgets/trackselector.h \
-    widgets/trackselectorbutton.h
+    widgets/trackselectorbutton.h \
+    configcontroller.h
 
 FORMS += \
         pacimainwindow.ui \

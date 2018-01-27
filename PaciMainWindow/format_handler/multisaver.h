@@ -46,6 +46,8 @@ protected:
   static void setupCsv(BaseSaver *saver);
   static void setupSrt(BaseSaver *saver);
 
+  void showInfomation();
+
 signals:
 
 public slots:

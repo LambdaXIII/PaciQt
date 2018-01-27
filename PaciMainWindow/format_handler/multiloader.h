@@ -8,6 +8,7 @@
 #include "candy_macros.h"
 #include "sequence.h"
 #include "textloader.h"
+#include "configcontroller.h"
 
 
 using namespace FormatProfile;
@@ -46,6 +47,8 @@ protected:
   BaseLoader *workLoader;
 
   static void setupCsv(BaseLoader *loader);
+
+  void showInfomation();
 
 }; //namespace Multiloader
 
