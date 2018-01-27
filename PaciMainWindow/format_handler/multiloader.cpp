@@ -6,8 +6,10 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QSettings>
+#include <QInputDialog>
 #include "fcp7xmlloader.h"
 #include "csvloader.h"
+#include "srtloader.h"
 
 #include "widgets/csvoptiondialog.h"
 
@@ -38,11 +40,13 @@ Multiloader::~Multiloader()
 const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap =  {
   {PlainText, &createInstance<TextLoader>},
   {Fcp7Xml, &createInstance<Fcp7XMLLoader>},
-  {Csv, &createInstance<CsvLoader>}
+  {Csv, &createInstance<CsvLoader>},
+  {Srt, &createInstance<SrtLoader>}
 };
 
 const QMap<Format, std::function<void(BaseLoader*)>> Multiloader::setupMap = {
   {Csv, &Multiloader::setupCsv},
+  {Srt, &Multiloader::setupSrt}
 };
 
 
@@ -109,4 +113,11 @@ void Multiloader::setupCsv(BaseLoader *loader)
   s->setTimebase(dialog->getTimebase());
   s->setUseTimecode(dialog->getUseTimecode());
   dialog->deleteLater();
+}
+
+void Multiloader::setupSrt(BaseLoader *loader)
+{
+  SrtLoader *l = qobject_cast<SrtLoader*>(loader);
+  auto pro = QInputDialog::getItem(QApplication::focusWidget(), tr("选择帧速率"), tr("选择导入序列的帧速率"), Timebase::profiles(), 0, false);
+  l->setTimebase(Timebase::fromProfile(pro));
 }

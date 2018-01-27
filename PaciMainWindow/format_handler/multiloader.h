@@ -47,6 +47,7 @@ protected:
   BaseLoader *workLoader;
 
   static void setupCsv(BaseLoader *loader);
+  static void setupSrt(BaseLoader *loader);
 
   void showInfomation();
 
