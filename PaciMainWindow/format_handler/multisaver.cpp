@@ -2,6 +2,7 @@
 #include <QProgressDialog>
 #include <QInputDialog>
 #include <QApplication>
+#include <QMessageBox>
 #include "fcp7xmlsaver.h"
 #include "textsaver.h"
 #include "csvsaver.h"
@@ -34,7 +35,8 @@ const QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> Multisaver::saver
 
 const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {
   {Fcp7Xml, &Multisaver::setupFcp7Xml},
-  {Csv, &Multisaver::setupCsv}
+  {Csv, &Multisaver::setupCsv},
+  {Srt, &Multisaver::setupSrt}
 };
 
 void Multisaver::save()
@@ -87,4 +89,21 @@ void Multisaver::setupCsv(BaseSaver *saver)
   dialog->exec();
   s->setUseTimecode(dialog->getUseTimecode());
   dialog->deleteLater();
+}
+
+void Multisaver::setupSrt(BaseSaver *saver)
+{
+  CsvSaver *s = qobject_cast<CsvSaver*>(saver);
+
+  if (s->sequence()->trackBox()->size() > 1) {
+    auto export_all = QMessageBox::question(
+                        QApplication::focusWidget(),
+                        tr("导出全部轨道吗？"),
+                        tr("因为 SRT 字幕支持字幕叠加，所以是否要导出全部轨道？"), QMessageBox::Yes, QMessageBox::No);
+    if (export_all == QMessageBox::Yes) {
+      s->setTrackIndex(-1);
+    } else {
+      s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence(), QApplication::focusWidget()));
+    }
+  }
 }
