@@ -1,11 +1,14 @@
 #include "clipstablemodel.h"
 #include "sequencedoc.h"
 #include "timebase.h"
+#include "configcontroller.h"
 
 ClipsTableModel::ClipsTableModel(QObject *parent, int index)
   : QAbstractTableModel(parent), m_trackIndex(index), m_showTC(false)
 {
   m_headers << tr("开始时间") << tr("结束时间") << tr("内容");
+  QSettings set;
+  m_showTC = set.value(ConfigController::uiGroup + "/table_show_tc").toBool();
 }
 
 Track* ClipsTableModel::currentTrack() const
@@ -102,6 +105,8 @@ void ClipsTableModel::setShowTC(bool x)
 {
   if (x != m_showTC) {
     m_showTC = x;
+    QSettings s;
+    s.setValue(ConfigController::uiGroup + "/table_show_tc", x);
     emit dataChanged(index(0, 0), index(rowCount(), 1));
   }
 }

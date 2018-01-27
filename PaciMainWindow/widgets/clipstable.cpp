@@ -22,7 +22,7 @@ void ClipsTable::paintEvent(QPaintEvent *event)
 
 void ClipsTable::acceptNewTrackIndex(int x)
 {
-  qDebug() << "Accept new trackindex:" << x;
+//  qDebug() << "Accept new trackindex:" << x;
   auto old = model();
   setModel(new ClipsTableModel(this, x));
   old->deleteLater();
@@ -33,7 +33,6 @@ void ClipsTable::showTC(bool x)
   if (model()) {
     auto a = qobject_cast<ClipsTableModel*>( model());
     a->setShowTC(x);
-
   }
 }
 

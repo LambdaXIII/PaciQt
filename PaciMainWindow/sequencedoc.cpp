@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include <QApplication>
 #include <QDebug>
+#include "configcontroller.h"
 
 SequenceDoc::SequenceDoc(QObject *parent) : QObject(parent)
 {
@@ -31,7 +32,7 @@ SequenceDoc* SequenceDoc::self = 0;
 void SequenceDoc::open()
 {
   QString selectedFilter;
-  auto filePath = QFileDialog::getOpenFileName(QApplication::focusWidget(), tr("打开文件"), QDir::homePath(), Multiloader::getAllFilters(), &selectedFilter);
+  auto filePath = QFileDialog::getOpenFileName(QApplication::focusWidget(), tr("打开文件"), ConfigController::lastFileDialogPath(), Multiloader::getAllFilters(), &selectedFilter);
 
   if (! filePath.isEmpty()) {
     setCurrentFormatFilter(selectedFilter);
@@ -41,6 +42,8 @@ void SequenceDoc::open()
     setCurrentFilename(filePath);
     setEdited(false);
     emit sequenceOpened();
+
+    ConfigController::setLastFileDialogPath(filePath);
   }
 }
 
@@ -61,7 +64,7 @@ void SequenceDoc::save()
 void SequenceDoc::saveAs()
 {
   QString selectedFilter;
-  auto filename = QFileDialog::getSaveFileName(QApplication::focusWidget(), tr("保存文件"), QDir::homePath(), Multisaver::getAllFilters(), &selectedFilter);
+  auto filename = QFileDialog::getSaveFileName(QApplication::focusWidget(), tr("保存文件"), ConfigController::lastFileDialogPath(), Multisaver::getAllFilters(), &selectedFilter);
 
   if (! filename.isEmpty()) {
     setCurrentFormatFilter(selectedFilter);
@@ -72,6 +75,8 @@ void SequenceDoc::saveAs()
     setCurrentFilename(filename);
     emit sequenceOpened();
     qDebug() << "New file:" << filename << "saved.";
+
+    ConfigController::setLastFileDialogPath(filename);
   }
 }
 

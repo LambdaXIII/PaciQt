@@ -3,6 +3,7 @@
 #include "configcontroller.h"
 #include <QFileDialog>
 #include <QDebug>
+#include "configcontroller.h"
 
 #include "widgets/trackselector.h"
 
@@ -12,6 +13,10 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
 {
   ui->setupUi(this);
   ui->trackSideBar->setVisible(false);
+
+  QSettings s;
+  s.beginGroup(ConfigController::uiGroup);
+  ui->actionShowTC->setChecked(s.value("table_show_tc").toBool());
 
   connect(GlobalDocument, &SequenceDoc::currentFilenameChanged, this, &PaciMainWindow::setWindowFilePath);
 
