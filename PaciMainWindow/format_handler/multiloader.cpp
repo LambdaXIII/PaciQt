@@ -10,6 +10,7 @@
 #include "fcp7xmlloader.h"
 #include "csvloader.h"
 #include "srtloader.h"
+#include "fcp7xmlclipnameloader.h"
 
 #include "widgets/csvoptiondialog.h"
 
@@ -41,7 +42,8 @@ const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap
   {PlainText, &createInstance<TextLoader>},
   {Fcp7Xml, &createInstance<Fcp7XMLLoader>},
   {Csv, &createInstance<CsvLoader>},
-  {Srt, &createInstance<SrtLoader>}
+  {Srt, &createInstance<SrtLoader>},
+  {Fcp7XmlClipName, &createInstance<Fcp7XMLClipNameLoader>},
 };
 
 const QMap<Format, std::function<void(BaseLoader*)>> Multiloader::setupMap = {
