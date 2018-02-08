@@ -9,6 +9,7 @@
 #include "textsaver.h"
 #include "csvsaver.h"
 #include "srtsaver.h"
+#include "pacisaver.h"
 #include "widgets/csvoptiondialog.h"
 #include "widgets/trackselector.h"
 
@@ -32,7 +33,8 @@ const QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> Multisaver::saver
   {PlainText, &createInstance<TextSaver>},
   {Fcp7Xml, &createInstance<Fcp7XMLSaver>},
   {Csv, &createInstance<CsvSaver>},
-  {Srt, &createInstance<SrtSaver>}
+  {Srt, &createInstance<SrtSaver>},
+  {Paci, &createInstance<PaciSaver>}
 };
 
 const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {

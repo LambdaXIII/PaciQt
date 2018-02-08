@@ -10,6 +10,7 @@ namespace FormatProfile {
 
 enum Format {
   Unknown,
+  Paci,
   PlainText,
   Fcp7Xml,
   Fcp7XmlClipName,
@@ -18,6 +19,7 @@ enum Format {
 };
 
 const QMap<Format, QString> formatNames{
+  {Paci, "啪词"},
   {PlainText, "文本台词本"},
   {Fcp7Xml, "FCP7 XML 文件"},
   {Fcp7XmlClipName, "XML 片段名模式"},
@@ -26,6 +28,7 @@ const QMap<Format, QString> formatNames{
 };
 
 const QMap<Format, QString> formatSuffixes{
+  {Paci, "*.paci"},
   {PlainText, "*.txt"},
   {Fcp7Xml, "*.xml"},
   {Csv, "*.csv"},
