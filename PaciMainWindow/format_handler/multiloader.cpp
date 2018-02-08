@@ -9,6 +9,7 @@
 #include <QInputDialog>
 #include "fcp7xmlloader.h"
 #include "csvloader.h"
+#include "paciloader.h"
 #include "srtloader.h"
 #include "fcp7xmlclipnameloader.h"
 
@@ -39,6 +40,7 @@ Multiloader::~Multiloader()
 }
 
 const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap =  {
+  {Paci, &createInstance<PaciLoader>},
   {PlainText, &createInstance<TextLoader>},
   {Fcp7Xml, &createInstance<Fcp7XMLLoader>},
   {Csv, &createInstance<CsvLoader>},
