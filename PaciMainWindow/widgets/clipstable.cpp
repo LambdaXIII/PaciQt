@@ -2,6 +2,7 @@
 #include "clipstablemodel.h"
 #include <QPainter>
 #include <QDebug>
+#include "candy_macros.h"
 
 ClipsTable::ClipsTable(QWidget *parent)
   : QTableView(parent)
@@ -22,7 +23,7 @@ void ClipsTable::paintEvent(QPaintEvent *event)
 
 void ClipsTable::acceptNewTrackIndex(int x)
 {
-//  qDebug() << "Accept new trackindex:" << x;
+  CANDY_DEBUG << "Accept new trackindex:" << x;
   auto old = model();
   setModel(new ClipsTableModel(this, x));
   old->deleteLater();

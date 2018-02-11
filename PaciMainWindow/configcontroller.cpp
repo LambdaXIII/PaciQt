@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+//#include "candy_macros.h"
 
 ConfigController::ConfigController(QObject *parent) : QObject(parent)
 {}

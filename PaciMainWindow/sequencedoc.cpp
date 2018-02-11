@@ -8,6 +8,7 @@
 #include <QApplication>
 #include <QDebug>
 #include "configcontroller.h"
+#include "candy_macros.h"
 
 SequenceDoc::SequenceDoc(QObject *parent) : QObject(parent)
 {
@@ -56,9 +57,11 @@ void SequenceDoc::open()
 void SequenceDoc::save()
 {
   if (currentFilename().isEmpty() || (FormatProfile::searchFormat(currentFormatFilter()) != FormatProfile::Paci)) {
+    CANDY_DEBUG << "Redirecting to save as...";
     saveAs();
   } else {
     if (edited()) {
+      CANDY_DEBUG << "Silent save paci file:" << currentFilename();
       Multisaver saver(sequence(), currentFilename());
       saver.save();
       setEdited(false);
@@ -80,7 +83,7 @@ void SequenceDoc::saveAs()
     emit sequenceSaved();
     setCurrentFilename(filename);
     emit sequenceOpened();
-    qDebug() << "New file:" << filename << "saved.";
+    CANDY_DEBUG << "New file:" << filename << "saved.";
 
     ConfigController::setLastFileDialogPath(filename);
   }
@@ -93,7 +96,7 @@ void SequenceDoc::create()
   setCurrentFilename("");
   setEdited(true);
   emit sequenceCreated();
-  qDebug() << "New sequence" << sequenceName << "created.";
+  CANDY_DEBUG << "New sequence" << sequenceName << "created.";
 }
 
 void SequenceDoc::setCurrentFilename(QString v)
@@ -109,7 +112,7 @@ void SequenceDoc::setSequence(QSharedPointer<Sequence> s)
   if (m_sequence != s) {
     m_sequence = s;
     emit sequenceChanged(m_sequence);
-    qDebug() << "[SequenceDoc]:New Sequence" << m_sequence->sequenceName() << "setted.";
+    CANDY_DEBUG << "New Sequence" << m_sequence->sequenceName() << "setted.";
   }
 }
 
