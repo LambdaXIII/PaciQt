@@ -21,6 +21,14 @@ Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilt
   workSaver = Multisaver::saverMap[m_format](sequence(), filename());
 }
 
+Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QObject *parent)
+  : QObject(parent), m_filename(_path), m_sequence(sequence_ptr)
+{
+  m_format = Paci;
+
+  workSaver = Multisaver::saverMap[m_format](sequence(), filename());
+}
+
 
 Multisaver::~Multisaver()
 {

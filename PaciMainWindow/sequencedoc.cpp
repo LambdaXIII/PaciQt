@@ -2,6 +2,7 @@
 
 #include "format_handler/multiloader.h"
 #include "format_handler/multisaver.h"
+#include "format_handler/formatprofile.h"
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QApplication>
@@ -39,8 +40,13 @@ void SequenceDoc::open()
     Multiloader loader(filePath, selectedFilter);
     setSequence(loader.getSequence());
 
+//    if (filePath.endsWith(".paci")) {
     setCurrentFilename(filePath);
     setEdited(false);
+//    } else {
+//      setCurrentFilename("");
+//      setEdited(true);
+//    }
     emit sequenceOpened();
 
     ConfigController::setLastFileDialogPath(filePath);
@@ -49,11 +55,11 @@ void SequenceDoc::open()
 
 void SequenceDoc::save()
 {
-  if (currentFilename().isEmpty()) {
+  if (currentFilename().isEmpty() || (FormatProfile::searchFormat(currentFormatFilter()) != FormatProfile::Paci)) {
     saveAs();
   } else {
     if (edited()) {
-      Multisaver saver(sequence(), currentFilename(), currentFormatFilter());
+      Multisaver saver(sequence(), currentFilename());
       saver.save();
       setEdited(false);
       emit sequenceSaved();

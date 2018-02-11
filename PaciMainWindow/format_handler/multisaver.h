@@ -29,6 +29,7 @@ class Multisaver : public QObject
 
 public:
   explicit Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilter, QObject *parent = nullptr);
+  explicit Multisaver(SeqPtr sequence_ptr, QString _path, QObject *parent = nullptr);
   ~Multisaver();
 
   const static QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> saverMap;
