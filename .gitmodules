@@ -7,3 +7,6 @@
 [submodule "PaciFormat"]
 	path = PaciFormat
 	url = git@github.com:LambdaXIII/PaciFormat.git
+[submodule "PaciWidget"]
+	path = PaciWidget
+	url = git@github.com:LambdaXIII/PaciWidget.git

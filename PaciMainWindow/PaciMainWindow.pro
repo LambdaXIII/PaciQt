@@ -64,13 +64,6 @@ FORMS += \
     widgets/clipeditor.ui \
     widgets/trackselector.ui
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/release/ -lPaciWidget
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/debug/ -lPaciWidget
-else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/ -lPaciWidget
-
-INCLUDEPATH += $$PWD/../PaciWidget
-DEPENDPATH += $$PWD/../PaciWidget
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciCore/release/ -lPaciCore
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciCore/debug/ -lPaciCore
 else:unix: LIBS += -L$$OUT_PWD/../PaciCore/ -lPaciCore
@@ -91,3 +84,10 @@ else:unix: LIBS += -L$$OUT_PWD/../PaciFormat/ -lPaciFormat
 
 INCLUDEPATH += $$PWD/../PaciFormat
 DEPENDPATH += $$PWD/../PaciFormat
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacitimewidget/release/ -lpacitimewidget
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacitimewidget/debug/ -lpacitimewidget
+else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/pacitimewidget/ -lpacitimewidget
+
+INCLUDEPATH += $$PWD/../PaciWidget/pacitimewidget
+DEPENDPATH += $$PWD/../PaciWidget/pacitimewidget
