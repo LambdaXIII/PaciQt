@@ -25,26 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     timecodeclock.cpp \
     timebasecombobox.cpp \
-    usetimecodeselector.cpp \
-    font_dialog/fontinfodialog.cpp \
-    font_dialog/basewidgets/doublesetter.cpp
+    usetimecodeselector.cpp
 
 HEADERS += \
         paciwidget_global.h \ 
     timecodeclock.h \
     timebasecombobox.h \
-    usetimecodeselector.h \
-    font_dialog/fontinfodialog.h \
-    font_dialog/basewidgets/valuewidgetbase.h \
-    font_dialog/basewidgets/doublesetter.h
+    usetimecodeselector.h
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
 
-FORMS += \
-    font_dialog/fontinfodialog.ui
+FORMS +=
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../CandyQt/release/ -lCandyQt
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../CandyQt/debug/ -lCandyQt
