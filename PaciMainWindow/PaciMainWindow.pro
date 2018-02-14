@@ -91,3 +91,17 @@ else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/pacitimewidget/ -lpacitimewidget
 
 INCLUDEPATH += $$PWD/../PaciWidget/pacitimewidget
 DEPENDPATH += $$PWD/../PaciWidget/pacitimewidget
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacibasewidget/release/ -lpacibasewidget
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacibasewidget/debug/ -lpacibasewidget
+else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/pacibasewidget/ -lpacibasewidget
+
+INCLUDEPATH += $$PWD/../PaciWidget/pacibasewidget
+DEPENDPATH += $$PWD/../PaciWidget/pacibasewidget
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacifontdesigner/release/ -lpacifontdesigner
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacifontdesigner/debug/ -lpacifontdesigner
+else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/pacifontdesigner/ -lpacifontdesigner
+
+INCLUDEPATH += $$PWD/../PaciWidget/pacifontdesigner
+DEPENDPATH += $$PWD/../PaciWidget/pacifontdesigner

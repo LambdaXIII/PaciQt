@@ -4,8 +4,9 @@
 #include <QFileDialog>
 #include <QDebug>
 #include "configcontroller.h"
+#include "candy_macros.h"
 
-#include "widgets/trackselector.h"
+#include "testdialog.h"
 
 PaciMainWindow::PaciMainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -48,8 +49,8 @@ PaciMainWindow::~PaciMainWindow()
 
 void PaciMainWindow::run_test()
 {
-  auto a = new TrackSelector(GlobalSequence.data(), this);
+  auto a = new TestDialog(this);
+  CANDY_DEBUG << "TestDialog run.";
   a->exec();
-  qDebug() << a->currentTrackIndex();
   a->deleteLater();
 }

@@ -6,6 +6,7 @@
 #include <QButtonGroup>
 #include "sequence.h"
 #include "../sequencedoc.h"
+#include <QSpacerItem>
 
 
 class TrackSideBar : public QScrollArea
@@ -16,6 +17,7 @@ public:
 
 protected:
   QButtonGroup *buttonGroup;
+  QSpacerItem *spacer;
 
 signals:
   void trackSelected(int index);

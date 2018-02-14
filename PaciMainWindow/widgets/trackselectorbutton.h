@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QRadioButton>
+#include "pacibasebutton.h"
 #include "track.h"
 
 class TrackSelectorButton
@@ -15,8 +16,8 @@ public:
   explicit TrackSelectorButton(int i, Track* _track, QWidget *parent = nullptr);
 
 protected:
-  QStringList getPreviewLines() ;
-  QString getButtonText() ;
+  QStringList getPreviewLines();
+  QString getButtonText();
 
 signals:
 //  void trackSelected(int i);

@@ -1,25 +1,29 @@
 #include "trackbutton.h"
 #include <QPainter>
 
-TrackButton::TrackButton(int _index, Track* _track, QWidget *parent): QPushButton(parent), track(_track), trackIndex(_index)
+TrackButton::TrackButton(int _index, Track* _track, QWidget *parent)
+  : PaciBaseButton(parent), track(_track), trackIndex(_index)
 {
-  setFlat(true);
+//  setFlat(true);
   setFocusPolicy(Qt::NoFocus);
   setMinimumSize(50, 30);
   setCheckable(true);
-  setupLabel();
+//  setupLabel();
 }
 
-/*
+
 void TrackButton::paintEvent(QPaintEvent *event)
 {
   QPainter p(this);
-  p.setFont(QFont("HeitiSC", 13));
-  p.drawText(0, height() / 2, QString::number(trackIndex));
+  paintButtonShape(p);
+  paintCheckableOverlay(p);
+  p.setPen(Qt::white);
+  p.drawText(centerBox(), Qt::AlignLeft | Qt::AlignVCenter, QString::number(trackIndex));
+  p.drawText(centerBox(), Qt::AlignRight | Qt::AlignVCenter, track->tag());
 }
-*/
 
-void TrackButton::setupLabel()
-{
-  setText(QString("#%1\n%2").arg(trackIndex).arg(track->tag()));
-}
+
+//void TrackButton::setupLabel()
+//{
+//  setText(QString("#%1\n%2").arg(trackIndex).arg(track->tag()));
+//}

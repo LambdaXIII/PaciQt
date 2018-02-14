@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QPushButton>
 #include "track.h"
+#include "pacibasebutton.h"
 
-class TrackButton : public QPushButton
+class TrackButton : public PaciBaseButton
 {
   Q_OBJECT
 public:
@@ -14,9 +15,9 @@ public:
   Track *track;
   int trackIndex;
 
-  void setupLabel();
+//  void setupLabel();
 
-//  void paintEvent(QPaintEvent *event) override;
+  void paintEvent(QPaintEvent *event) override;
 };
 
 #endif // TRACKBUTTON_H

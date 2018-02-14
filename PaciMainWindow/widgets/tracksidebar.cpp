@@ -8,8 +8,10 @@ TrackSideBar::TrackSideBar(QWidget *parent) : QScrollArea(parent)
   setMaximumWidth(150);
   QVBoxLayout *box = new QVBoxLayout();
   box->setContentsMargins(0, 0, 0, 0);
+  box->setSpacing(0);
   setLayout(box);
   buttonGroup = new QButtonGroup(this);
+  spacer = new QSpacerItem(999999, 999999, QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 }
 
 void TrackSideBar::clearButtonGroup()
@@ -18,6 +20,7 @@ void TrackSideBar::clearButtonGroup()
     b->deleteLater();
     buttonGroup->removeButton(b);
   }
+  layout()->removeItem(spacer);
 }
 
 
@@ -32,6 +35,7 @@ void TrackSideBar::refresh()
     buttonGroup->addButton(button);
     layout()->addWidget(button);
   }
+  layout()->addItem(spacer);
 
   if (GlobalSequence->trackBox()->size() <= 1)
     this->setVisible(false);

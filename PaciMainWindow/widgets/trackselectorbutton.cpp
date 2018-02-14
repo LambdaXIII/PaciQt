@@ -3,6 +3,7 @@
 TrackSelectorButton::TrackSelectorButton(int i, Track *_track, QWidget *parent)
   : QRadioButton(parent), m_trackIndex(i), m_track(_track)
 {
+  setCheckable(true);
   setText(getButtonText());
 }
 
