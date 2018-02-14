@@ -1,3 +1,12 @@
 [submodule "PaciCore"]
 	path = PaciCore
 	url = git@github.com:LambdaXIII/PaciCore.git
+[submodule "CandyQt"]
+	path = CandyQt
+	url = git@github.com:LambdaXIII/CandyQt.git
+[submodule "PaciFormat"]
+	path = PaciFormat
+	url = git@github.com:LambdaXIII/PaciFormat.git
+[submodule "PaciWidget"]
+	path = PaciWidget
+	url = git@github.com:LambdaXIII/PaciWidget.git
