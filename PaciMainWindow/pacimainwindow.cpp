@@ -6,7 +6,7 @@
 #include "configcontroller.h"
 #include "candy_macros.h"
 
-#include "testdialog.h"
+#include "widgets/trackselector.h"
 
 PaciMainWindow::PaciMainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -49,9 +49,5 @@ PaciMainWindow::~PaciMainWindow()
 
 void PaciMainWindow::run_test()
 {
-//  auto a = new PaciTrackHeadButton(0, GlobalSequence->trackBox()->at(0), centralWidget());
-//  auto a = new QPushButton("g", centralWidget());
-//  a->setGeometry(0, 0, 100, 400);
-  auto a = new TestDialog(this);
-  a->show();
+  TrackSelector::getSelectedTrackIndex(GlobalSequence.data(), this);
 }
