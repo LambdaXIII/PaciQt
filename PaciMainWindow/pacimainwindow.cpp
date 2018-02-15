@@ -49,8 +49,9 @@ PaciMainWindow::~PaciMainWindow()
 
 void PaciMainWindow::run_test()
 {
+//  auto a = new PaciTrackHeadButton(0, GlobalSequence->trackBox()->at(0), centralWidget());
+//  auto a = new QPushButton("g", centralWidget());
+//  a->setGeometry(0, 0, 100, 400);
   auto a = new TestDialog(this);
-  CANDY_DEBUG << "TestDialog run.";
-  a->exec();
-  a->deleteLater();
+  a->show();
 }

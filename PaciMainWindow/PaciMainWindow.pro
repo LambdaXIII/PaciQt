@@ -27,7 +27,6 @@ SOURCES += \
         main.cpp \
         pacimainwindow.cpp \
     widgets/tracksidebar.cpp \
-    widgets/trackbutton.cpp \
     format_handler/formatprofile.cpp \
     format_handler/multiloader.cpp \
 #    sequencedoc.cpp
@@ -44,7 +43,6 @@ SOURCES += \
 HEADERS += \
         pacimainwindow.h \
     widgets/tracksidebar.h \
-    widgets/trackbutton.h \
     format_handler/formatprofile.h \
     format_handler/multiloader.h \
 #    sequencedoc.h

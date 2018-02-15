@@ -1,6 +1,7 @@
 #include "tracksidebar.h"
 #include <QVBoxLayout>
-#include "trackbutton.h"
+//#include "trackbutton.h"
+#include "pacitrackheadbutton.h"
 
 TrackSideBar::TrackSideBar(QWidget *parent) : QScrollArea(parent)
 {
@@ -30,8 +31,10 @@ void TrackSideBar::refresh()
 
   TrackBox *tracks = GlobalSequence->trackBox();
   for (int i = 0; i < tracks->size(); i++) {
-    TrackButton *button = new TrackButton(i, GlobalSequence->trackBox()->at(i));
-    connect(button, &TrackButton::clicked, this, &TrackSideBar::handleSelection);
+    PaciTrackHeadButton *button = new PaciTrackHeadButton(i, GlobalSequence->trackBox()->at(i));
+    if (i == 0)
+      button->setChecked(true);
+    connect(button, &PaciTrackHeadButton::clicked, this, &TrackSideBar::handleSelection);
     buttonGroup->addButton(button);
     layout()->addWidget(button);
   }
@@ -42,12 +45,12 @@ void TrackSideBar::refresh()
   else
     this->setVisible(true);
 
-  buttonGroup->buttons().first()->setChecked(true);
+//  buttonGroup->buttons().first()->setChecked(true);
   emit trackSelected(0);
 }
 
 void TrackSideBar::handleSelection()
 {
-  TrackButton *checked = (TrackButton*)buttonGroup->checkedButton();
-  emit trackSelected(checked->trackIndex);
+  PaciTrackHeadButton *checked = (PaciTrackHeadButton*)buttonGroup->checkedButton();
+  emit trackSelected(checked->trackIndex());
 }
