@@ -36,8 +36,6 @@ SOURCES += \
     widgets/clipstablemodel.cpp \
     widgets/csvoptiondialog.cpp \
     widgets/clipeditor.cpp \
-    widgets/trackselector.cpp \
-    widgets/trackselectorbutton.cpp \
     configcontroller.cpp
 
 HEADERS += \
@@ -52,8 +50,6 @@ HEADERS += \
     widgets/clipstablemodel.h \
     widgets/csvoptiondialog.h \
     widgets/clipeditor.h \
-    widgets/trackselector.h \
-    widgets/trackselectorbutton.h \
     configcontroller.h
 
 FORMS += \
@@ -103,3 +99,10 @@ else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/pacifontdesigner/ -lpacifontdesigne
 
 INCLUDEPATH += $$PWD/../PaciWidget/pacifontdesigner
 DEPENDPATH += $$PWD/../PaciWidget/pacifontdesigner
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacitrackselector/release/ -lpacitrackselector
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciWidget/pacitrackselector/debug/ -lpacitrackselector
+else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/pacitrackselector/ -lpacitrackselector
+
+INCLUDEPATH += $$PWD/../PaciWidget/pacitrackselector
+DEPENDPATH += $$PWD/../PaciWidget/pacitrackselector

@@ -11,7 +11,7 @@
 #include "srtsaver.h"
 #include "pacisaver.h"
 #include "widgets/csvoptiondialog.h"
-#include "widgets/trackselector.h"
+#include "pacitrackselector.h"
 
 Multisaver::Multisaver(SeqPtr sequence_ptr, QString _path, QString _selectedFilter, QObject *parent)
   : QObject(parent), m_filename(_path), m_sequence(sequence_ptr)
@@ -46,6 +46,7 @@ const QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> Multisaver::saver
 };
 
 const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {
+  {PlainText, &Multisaver::setupText},
   {Fcp7Xml, &Multisaver::setupFcp7Xml},
   {Csv, &Multisaver::setupCsv},
   {Srt, &Multisaver::setupSrt}
@@ -99,7 +100,7 @@ QString Multisaver::getAllFilters()
 void Multisaver::setupText(BaseSaver *saver)
 {
   TextSaver *s = qobject_cast<TextSaver*>(saver);
-  s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence(), QApplication::focusWidget()));
+  s->setTrackIndex(PaciTrackSelector::getSingleTrackIndex(saver->sequence(), QApplication::focusWidget()));
 }
 
 void Multisaver::setupFcp7Xml(BaseSaver *saver)
@@ -113,7 +114,7 @@ void Multisaver::setupFcp7Xml(BaseSaver *saver)
 void Multisaver::setupCsv(BaseSaver *saver)
 {
   CsvSaver *s = qobject_cast<CsvSaver*>(saver);
-  s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence(), QApplication::focusWidget()));
+  s->setTrackIndex(PaciTrackSelector::getSingleTrackIndex(saver->sequence(), QApplication::focusWidget()));
   auto *dialog = new CsvOptionDialog(CsvOptionDialog::Saving, QApplication::focusWidget());
   dialog->exec();
   s->setUseTimecode(dialog->getUseTimecode());
@@ -132,7 +133,7 @@ void Multisaver::setupSrt(BaseSaver *saver)
     if (export_all == QMessageBox::Yes) {
       s->setTrackIndex(-1);
     } else {
-      s->setTrackIndex(TrackSelector::getSelectedTrackIndex(saver->sequence()));
+      s->setTrackIndex(PaciTrackSelector::getSingleTrackIndex(saver->sequence()));
     }
   }
 }
