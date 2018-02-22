@@ -6,7 +6,7 @@
 #include "configcontroller.h"
 #include "candy_macros.h"
 
-#include "pacitrackselector.h"
+#include "testdialog.h"
 
 PaciMainWindow::PaciMainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -49,5 +49,6 @@ PaciMainWindow::~PaciMainWindow()
 
 void PaciMainWindow::run_test()
 {
-  CANDY_DEBUG << PaciTrackSelector::getMultiTrackIndexes(GlobalSequence.data(), this);
+  auto a = new TestDialog(this);
+  a->show();
 }
