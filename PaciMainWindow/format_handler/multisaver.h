@@ -46,6 +46,7 @@ protected:
   static void setupFcp7Xml(BaseSaver *saver);
   static void setupCsv(BaseSaver *saver);
   static void setupSrt(BaseSaver *saver);
+  static void setupTtml(BaseSaver *saver);
 
   void showInfomation();
 

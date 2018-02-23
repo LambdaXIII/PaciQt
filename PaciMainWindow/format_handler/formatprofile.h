@@ -15,7 +15,8 @@ enum Format {
   Fcp7Xml,
   Fcp7XmlClipName,
   Csv,
-  Srt
+  Srt,
+  Ttml
 };
 
 const QMap<Format, QString> formatNames{
@@ -24,7 +25,8 @@ const QMap<Format, QString> formatNames{
   {Fcp7Xml, "FCP7 XML 文件"},
   {Fcp7XmlClipName, "XML 片段名模式"},
   {Csv, "逗号分割值"},
-  {Srt, "SRT字幕文件"}
+  {Srt, "SRT字幕文件"},
+  {Ttml, "TTML字幕文件"}
 };
 
 const QMap<Format, QString> formatSuffixes{
@@ -34,6 +36,7 @@ const QMap<Format, QString> formatSuffixes{
   {Csv, "*.csv"},
   {Srt, "*.srt"},
   {Fcp7XmlClipName, "*.xml"},
+  {Ttml, "*.xml"}
 };
 
 QString getFilter(Format f);

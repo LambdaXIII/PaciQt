@@ -10,6 +10,7 @@
 #include "csvsaver.h"
 #include "srtsaver.h"
 #include "pacisaver.h"
+#include "ttmlsaver.h"
 #include "widgets/csvoptiondialog.h"
 #include "pacitrackselector.h"
 
@@ -42,14 +43,16 @@ const QMap<Format, std::function<BaseSaver*(SeqPtr, QString)>> Multisaver::saver
   {Fcp7Xml, &createInstance<Fcp7XMLSaver>},
   {Csv, &createInstance<CsvSaver>},
   {Srt, &createInstance<SrtSaver>},
-  {Paci, &createInstance<PaciSaver>}
+  {Paci, &createInstance<PaciSaver>},
+  {Ttml, &createInstance<TTMLSaver>}
 };
 
 const QMap<Format, std::function<void(BaseSaver*)>> Multisaver::setupMap = {
   {PlainText, &Multisaver::setupText},
   {Fcp7Xml, &Multisaver::setupFcp7Xml},
   {Csv, &Multisaver::setupCsv},
-  {Srt, &Multisaver::setupSrt}
+  {Srt, &Multisaver::setupSrt},
+  {Ttml, &Multisaver::setupTtml}
 };
 
 void Multisaver::showInfomation()
@@ -135,5 +138,13 @@ void Multisaver::setupSrt(BaseSaver *saver)
     } else {
       s->setTrackIndex(PaciTrackSelector::getSingleTrackIndex(saver->sequence()));
     }
+  }
+}
+
+void Multisaver::setupTtml(BaseSaver *saver)
+{
+  TTMLSaver *s = qobject_cast<TTMLSaver*>(saver);
+  if (s->sequence()->trackBox()->size() > 1) {
+    s->setTrackIndex(PaciTrackSelector::getSingleTrackIndex(saver->sequence()));
   }
 }
