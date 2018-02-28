@@ -3,10 +3,12 @@
 //#include "trackbutton.h"
 #include "pacitrackheadbutton.h"
 
+
 TrackSideBar::TrackSideBar(QWidget *parent) : QScrollArea(parent)
 {
 //  QWidget *widget = new QWidget()
   setMaximumWidth(150);
+  setWidgetResizable(false);
   QVBoxLayout *box = new QVBoxLayout();
   box->setContentsMargins(0, 0, 0, 0);
   box->setSpacing(0);
