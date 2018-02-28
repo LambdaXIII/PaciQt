@@ -11,14 +11,13 @@
 #include "csvloader.h"
 #include "paciloader.h"
 #include "srtloader.h"
+#include "ttmlloader.h"
 #include "fcp7xmlclipnameloader.h"
 
 #include "widgets/csvoptiondialog.h"
 
 
 using namespace FormatProfile;
-
-
 
 
 Multiloader::Multiloader(QString _path, QString _selectedFilter, QObject *parent)
@@ -46,11 +45,13 @@ const QMap<Format, std::function<BaseLoader*(QString)>> Multiloader::functionMap
   {Csv, &createInstance<CsvLoader>},
   {Srt, &createInstance<SrtLoader>},
   {Fcp7XmlClipName, &createInstance<Fcp7XMLClipNameLoader>},
+  {Ttml, &createInstance<TTMLLoader>}
 };
 
 const QMap<Format, std::function<void(BaseLoader*)>> Multiloader::setupMap = {
   {Csv, &Multiloader::setupCsv},
-  {Srt, &Multiloader::setupSrt}
+  {Srt, &Multiloader::setupSrt},
+//  {Ttml, &Multiloader::setupTtml},
 };
 
 
