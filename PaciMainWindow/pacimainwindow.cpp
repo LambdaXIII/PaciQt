@@ -7,6 +7,7 @@
 #include "candy_macros.h"
 
 #include "testdialog.h"
+#include <QDebug>
 
 PaciMainWindow::PaciMainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -18,11 +19,13 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   QSettings s;
   s.beginGroup(ConfigController::uiGroup);
   ui->actionShowTC->setChecked(s.value("table_show_tc").toBool());
+  ui->actionSave->setDisabled(true);
 
   connect(GlobalDocument, &SequenceDoc::currentFilenameChanged, this, &PaciMainWindow::setWindowFilePath);
 
   connect(GlobalDocument, &SequenceDoc::editedChanged, ui->trackSideBar, &TrackSideBar::refresh);
   connect(GlobalDocument, &SequenceDoc::sequenceChanged, ui->trackSideBar, &TrackSideBar::refresh);
+  connect(GlobalDocument, &SequenceDoc::editedChanged, ui->actionSave, &QAction::setEnabled);
 
   connect(ui->trackSideBar, &TrackSideBar::trackSelected, ui->clipsTable, &ClipsTable::acceptNewTrackIndex);
 
@@ -39,6 +42,7 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   connect(ui->clipEditor, &ClipEditor::editingDone, ui->clipsTable, &ClipsTable::setContent);
 
   connect(ui->actionResetWarnings, &QAction::triggered, &ConfigController::resetWarnings);
+
 }
 
 PaciMainWindow::~PaciMainWindow()
