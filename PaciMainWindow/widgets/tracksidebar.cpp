@@ -37,6 +37,7 @@ void TrackSideBar::refresh()
     if (i == 0)
       button->setChecked(true);
     connect(button, &PaciTrackHeadButton::clicked, this, &TrackSideBar::handleSelection);
+    connect(button, &PaciTrackHeadButton::trackTagChanged, GlobalDocument, &SequenceDoc::justEdited);
     buttonGroup->addButton(button);
     layout()->addWidget(button);
   }
