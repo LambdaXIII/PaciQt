@@ -47,6 +47,7 @@ protected:
   static void setupCsv(BaseSaver *saver);
   static void setupSrt(BaseSaver *saver);
   static void setupTtml(BaseSaver *saver);
+  static void setupFlameXml(BaseSaver *saver);
 
   void showInfomation();
 
