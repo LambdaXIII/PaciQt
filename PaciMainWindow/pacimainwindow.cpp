@@ -6,7 +6,7 @@
 #include "configcontroller.h"
 #include "candy_macros.h"
 
-#include "testdialog.h"
+#include "pacifontdesinerdialog.h"
 #include <QDebug>
 
 PaciMainWindow::PaciMainWindow(QWidget *parent) :
@@ -26,6 +26,9 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   connect(GlobalDocument, &SequenceDoc::editedChanged, ui->trackSideBar, &TrackSideBar::refresh);
   connect(GlobalDocument, &SequenceDoc::sequenceChanged, ui->trackSideBar, &TrackSideBar::refresh);
   connect(GlobalDocument, &SequenceDoc::editedChanged, ui->actionSave, &QAction::setEnabled);
+  connect(GlobalDocument, &SequenceDoc::sequenceOpened, [&]() {
+    ui->actionSetupFont->setEnabled(true);
+  });
 
   connect(ui->trackSideBar, &TrackSideBar::trackSelected, ui->clipsTable, &ClipsTable::acceptNewTrackIndex);
 
@@ -37,6 +40,8 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   connect(ui->actionSaveAs, &QAction::triggered, GlobalDocument, &SequenceDoc::saveAs);
 
   connect(ui->actionShowTC, &QAction::triggered, ui->clipsTable, &ClipsTable::showTC);
+
+  connect(ui->actionSetupFont, &QAction::triggered, this, &PaciMainWindow::setupFont);
 
   connect(ui->clipsTable, &ClipsTable::clipDoubleClicked, ui->clipEditor, &ClipEditor::editClip);
   connect(ui->clipEditor, &ClipEditor::editingDone, ui->clipsTable, &ClipsTable::setContent);
@@ -53,6 +58,17 @@ PaciMainWindow::~PaciMainWindow()
 
 void PaciMainWindow::run_test()
 {
-  auto a = new TestDialog(this);
+  auto a = new PaciFontDesinerDialog(GlobalSequence->fontInfo(), this);
   a->show();
+}
+
+void PaciMainWindow::setupFont()
+{
+  auto d = new PaciFontDesinerDialog(GlobalSequence->fontInfo(), this);
+  d->exec();
+  if (d->result() == QDialog::Accepted) {
+    GlobalSequence->fontInfo()->deleteLater();
+    GlobalSequence->setFontInfo(d->currentFontInfo());
+    GlobalDocument->justEdited();
+  }
 }

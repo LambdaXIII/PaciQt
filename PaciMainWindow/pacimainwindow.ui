@@ -96,6 +96,7 @@
    <addaction name="actionSave"/>
    <addaction name="actionSaveAs"/>
    <addaction name="actionShowTC"/>
+   <addaction name="actionSetupFont"/>
    <addaction name="actionResetWarnings"/>
    <addaction name="actionTest"/>
   </widget>
@@ -135,6 +136,14 @@
   <action name="actionResetWarnings">
    <property name="text">
     <string>重置提示信息</string>
+   </property>
+  </action>
+  <action name="actionSetupFont">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>设置字体</string>
    </property>
   </action>
  </widget>

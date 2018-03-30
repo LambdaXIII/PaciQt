@@ -20,6 +20,8 @@ private:
 
 protected slots:
   void run_test();
+
+  void setupFont();
 };
 
 #endif // PACIMAINWINDOW_H
