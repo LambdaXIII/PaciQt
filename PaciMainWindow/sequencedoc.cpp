@@ -19,6 +19,7 @@ void SequenceDoc::init()
 {
   Q_ASSERT_X(!self, "SequenceDoc", "Only need one.");
   self = this;
+  self->setObjectName("SequenceDocSingleton");
 }
 
 SequenceDoc::~SequenceDoc()

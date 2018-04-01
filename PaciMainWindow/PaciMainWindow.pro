@@ -106,3 +106,6 @@ else:unix: LIBS += -L$$OUT_PWD/../PaciWidget/pacitrackselector/ -lpacitrackselec
 
 INCLUDEPATH += $$PWD/../PaciWidget/pacitrackselector
 DEPENDPATH += $$PWD/../PaciWidget/pacitrackselector
+
+RESOURCES += \
+    mainwindowresource.qrc
