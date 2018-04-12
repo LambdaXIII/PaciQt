@@ -22,6 +22,8 @@ protected slots:
   void run_test();
 
   void setupFont();
+
+//  void closeEvent(QCloseEvent *event);
 };
 
 #endif // PACIMAINWINDOW_H

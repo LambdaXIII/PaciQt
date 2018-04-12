@@ -4,7 +4,8 @@ SUBDIRS += \
     CandyQt \
     PaciCore \
     PaciFormat \
-    PaciWidget
+    PaciWidget \
+    PaciQtCLITest
 
 SUBDIRS += PaciMainWindow
 

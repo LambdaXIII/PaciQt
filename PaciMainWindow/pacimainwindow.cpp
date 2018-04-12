@@ -13,6 +13,8 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::PaciMainWindow)
 {
+//  SequenceDoc(this);
+
   ui->setupUi(this);
   ui->trackSideBar->setVisible(false);
 
@@ -47,7 +49,6 @@ PaciMainWindow::PaciMainWindow(QWidget *parent) :
   connect(ui->clipEditor, &ClipEditor::editingDone, ui->clipsTable, &ClipsTable::setContent);
 
   connect(ui->actionResetWarnings, &QAction::triggered, &ConfigController::resetWarnings);
-
 }
 
 PaciMainWindow::~PaciMainWindow()
@@ -72,3 +73,9 @@ void PaciMainWindow::setupFont()
     GlobalDocument->justEdited();
   }
 }
+
+//void PaciMainWindow::closeEvent(QCloseEvent *event)
+//{
+//  GlobalDocument->deleteLater();
+//  event->accept();
+//}
