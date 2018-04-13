@@ -2,7 +2,8 @@
 #define BASETEST_H
 
 #include <QObject>
-//#include <QTest>
+#include <QTest>
+#include <QDebug>
 #include <QVector>
 
 class BaseTest : public QObject
@@ -16,5 +17,7 @@ signals:
 
 public slots:
 };
+
+#define MAKEINC(X) static X instance;
 
 #endif // BASETEST_H

@@ -17,8 +17,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     basetest.cpp \
-    testtest.cpp
+    testtest.cpp \
+    pacitimetest.cpp
 
 HEADERS += \
     basetest.h \
-    testtest.h
+    testtest.h \
+    pacitimetest.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PaciCore/release/ -lPaciCore
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PaciCore/debug/ -lPaciCore
+else:unix: LIBS += -L$$OUT_PWD/../PaciCore/ -lPaciCore
+
+INCLUDEPATH += $$PWD/../PaciCore
+DEPENDPATH += $$PWD/../PaciCore
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../CandyQt/release/ -lCandyQt
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../CandyQt/debug/ -lCandyQt
+else:unix: LIBS += -L$$OUT_PWD/../CandyQt/ -lCandyQt
+
+INCLUDEPATH += $$PWD/../CandyQt
+DEPENDPATH += $$PWD/../CandyQt

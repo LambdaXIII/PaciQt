@@ -4,7 +4,8 @@
 void TestTest::aTestTestFunction()
 {
   qDebug() << "Tests Started!";
-  QCOMPARE(1, 2);
+  QCOMPARE(1, 1);
 }
 
-static TestTest instance;
+//To make the test availuable -- uncommet next line
+//MAKEINC(TestTest)
