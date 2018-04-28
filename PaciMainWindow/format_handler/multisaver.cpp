@@ -62,11 +62,13 @@ void Multisaver::showInfomation()
 {
   auto info = workSaver->info();
   auto setting_key = formatNames[format()] + "_saver_info_showed";
-  if (! info.isEmpty()) {
+
+  bool info_is_empty = info.title.isEmpty() || info.formatName.isEmpty() || info.content.isEmpty();
+  if (! info_is_empty) {
     QSettings settings;
     settings.beginGroup(ConfigController::warningGroup);
     if (! settings.value(setting_key).toBool()) {
-      QMessageBox::information(QApplication::focusWidget(), tr("重要提示"), info, QMessageBox::Ok);
+      QMessageBox::information(QApplication::focusWidget(), info.formatName, info.content, QMessageBox::Ok);
       settings.setValue(setting_key, true);
     }
     settings.endGroup();
