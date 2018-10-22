@@ -41,7 +41,7 @@ private:
 
 public slots:
   void setShowTC(bool x);
-  void setContent(int row, QString new_content);
+  void setContent(int row, const QString &new_content);
 };
 
 #endif // CLIPSTABLEMODEL_H

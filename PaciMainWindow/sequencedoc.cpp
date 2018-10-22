@@ -30,7 +30,7 @@ SequenceDoc* SequenceDoc::instance()
   return self;
 }
 
-SequenceDoc* SequenceDoc::self = 0;
+SequenceDoc* SequenceDoc::self = nullptr;
 
 void SequenceDoc::open()
 {

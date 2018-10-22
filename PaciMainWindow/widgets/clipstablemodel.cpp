@@ -96,9 +96,8 @@ QString ClipsTableModel::tcConvert(int frames) const
 {
   if (m_showTC) {
     return Timebase::frameToTimecode(frames, GlobalSequence->timebase());
-  } else {
-    return QString::number(frames);
   }
+  return QString::number(frames);
 }
 
 void ClipsTableModel::setShowTC(bool x)
@@ -111,7 +110,7 @@ void ClipsTableModel::setShowTC(bool x)
   }
 }
 
-void ClipsTableModel::setContent(int row, QString new_content)
+void ClipsTableModel::setContent(int row, const QString &new_content)
 {
   if (currentTrack()->at(row)->content() != new_content) {
     currentTrack()->at(row)->setContent(new_content);

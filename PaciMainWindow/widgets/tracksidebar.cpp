@@ -9,7 +9,7 @@ TrackSideBar::TrackSideBar(QWidget *parent) : QScrollArea(parent)
 //  QWidget *widget = new QWidget()
   setMaximumWidth(150);
   setWidgetResizable(false);
-  QVBoxLayout *box = new QVBoxLayout();
+  auto *box = new QVBoxLayout();
   box->setContentsMargins(0, 0, 0, 0);
   box->setSpacing(0);
   setLayout(box);
@@ -54,6 +54,6 @@ void TrackSideBar::refresh()
 
 void TrackSideBar::handleSelection()
 {
-  PaciTrackHeadButton *checked = (PaciTrackHeadButton*)buttonGroup->checkedButton();
+  auto *checked = (PaciTrackHeadButton*)buttonGroup->checkedButton();
   emit trackSelected(checked->trackIndex());
 }
